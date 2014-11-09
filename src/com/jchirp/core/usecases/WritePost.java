@@ -1,4 +1,4 @@
-package com.jchirp.test.core.usecases;
+package com.jchirp.core.usecases;
 
 import com.jchirp.core.entities.User;
 import com.jchirp.core.messages.Request;

@@ -3,6 +3,8 @@ package com.jchirp.test.core.usecases;
 import com.jchirp.core.entities.User;
 import com.jchirp.core.messages.Request;
 import com.jchirp.core.persistence.Context;
+import com.jchirp.core.usecases.Command;
+import com.jchirp.core.usecases.WritePost;
 import com.jchirp.test.core.usecases.persistence.MockGateway;
 import org.junit.Test;
 
