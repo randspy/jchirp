@@ -20,9 +20,7 @@ public class WritePostTest {
         Command usecase = new WritePost();
         Context.gateway = new MockGateway();
 
-        Request request = new Request();
-        request.setUserName(USER);
-        request.setContent(CONTENT);
+        Request request = new Request(USER, CONTENT);
 
         usecase.execute(request);
         User user = Context.gateway.getUser(USER);

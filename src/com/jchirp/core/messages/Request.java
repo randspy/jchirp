@@ -2,17 +2,13 @@ package com.jchirp.core.messages;
 
 public class Request {
 
-    private String content;
-    private String userName;
+    private final String userName;
+    private final String content;
 
-    public void setContent(String content) {
+    public Request(String userName, String content) {
+        this.userName = userName;
         this.content = content;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
 
     public String getUserName() {
         return userName;
