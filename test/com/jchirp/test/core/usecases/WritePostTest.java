@@ -25,5 +25,6 @@ public class WritePostTest {
         usecase.execute(request);
         User user = Context.gateway.getUser(USER);
         assertEquals(USER, user.getUserName());
+        assertEquals(CONTENT, user.getPosts().get(0).getContent());
     }
 }
