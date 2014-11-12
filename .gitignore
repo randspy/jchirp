@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -14,3 +13,6 @@ hs_err_pid*
 #IntellJ Idea files
 *.iml
 .idea/*
+
+#maven delivery folder
+target/*
