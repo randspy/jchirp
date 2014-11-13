@@ -1,7 +1,8 @@
 package com.jchirp.core.usecases;
 
-import com.jchirp.core.messages.Request;
+import com.jchirp.core.messages.RequestMsg;
+import com.jchirp.core.messages.ResponseMsg;
 
 public interface Command {
-    void execute(Request request);
+    ResponseMsg execute(RequestMsg requestMsg);
 }

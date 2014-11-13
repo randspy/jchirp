@@ -1,11 +1,11 @@
 package com.jchirp.core.messages;
 
-public class Request {
+public class RequestMsg {
 
     private final String userName;
     private final String content;
 
-    public Request(String userName, String content) {
+    public RequestMsg(String userName, String content) {
         this.userName = userName;
         this.content = content;
     }
