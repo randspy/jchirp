@@ -1,4 +1,4 @@
-package com.jchirp.core.persistence;
+package com.jchirp.core.external;
 
 import com.jchirp.core.entities.User;
 

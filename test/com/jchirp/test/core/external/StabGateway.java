@@ -1,15 +1,15 @@
-package com.jchirp.test.core.usecases.persistence;
+package com.jchirp.test.core.external;
 
 import com.jchirp.core.entities.User;
-import com.jchirp.core.persistence.Gateway;
+import com.jchirp.core.external.Gateway;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MockGateway implements Gateway {
+public class StabGateway implements Gateway {
     private Map<String, User> allUsers;
 
-    public MockGateway() {
+    public StabGateway() {
         allUsers = new HashMap<String, User>();
     }
 
