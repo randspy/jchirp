@@ -1,7 +1,7 @@
 package com.jchirp.test.console.handlers;
 
 import com.jchirp.console.handlers.ConsoleInputHandler;
-import com.jchirp.console.handlers.WriterHandler;
+import com.jchirp.console.handlers.WriteHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class WriteHandlerTest {
     @Before
     public void setUp(){
 
-        writeHandler = new WriterHandler();
+        writeHandler = new WriteHandler();
         spyWritePost = new SpyWritePost();
     }
 

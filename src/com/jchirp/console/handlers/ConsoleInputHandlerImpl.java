@@ -11,7 +11,7 @@ public abstract class ConsoleInputHandlerImpl implements ConsoleInputHandler {
         this.next_handler = handler;
     }
 
-    public abstract void handleRequest(String consoleInput);
+    public abstract String handleRequest(String consoleInput);
 
     @Override
     public void setUsecase(Command post) {

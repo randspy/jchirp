@@ -11,8 +11,9 @@ public class SpyHandler extends ConsoleInputHandlerImpl{
     }
 
     @Override
-    public void handleRequest(String consoleInput) {
+    public String handleRequest(String consoleInput) {
         wasCalled = true;
+        return "";
     }
 
     public boolean wasCalled() {
