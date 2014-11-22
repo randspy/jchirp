@@ -19,9 +19,8 @@ public class WriteHandlerTest {
 
     @Before
     public void setUp(){
-
-        writeHandler = new WriteHandler();
         spyWritePost = new SpyWritePost();
+        writeHandler = new WriteHandler(spyWritePost);
     }
 
     @Test
@@ -34,26 +33,20 @@ public class WriteHandlerTest {
 
     @Test
     public void  whenCorrectHandlerWriteUsecaseExecuted(){
-        writeHandler.setUsecase(spyWritePost);
         writeHandler.handleRequest(USER + ARROW + CONTENT);
-
         assertEquals(USER, spyWritePost.getRequest().getUserName());
         assertEquals(CONTENT, spyWritePost.getRequest().getContent());
     }
 
     @Test
     public void whenEmptyPostContentNoPostWritten(){
-        writeHandler.setUsecase(spyWritePost);
         writeHandler.handleRequest(USER + ARROW);
-
         assertEquals(null, spyWritePost.getRequest());
     }
 
     @Test
     public void whenEmptyPostUserNameNoPostWritten(){
-        writeHandler.setUsecase(spyWritePost);
         writeHandler.handleRequest(ARROW + CONTENT);
-
         assertEquals(null, spyWritePost.getRequest());
     }
 

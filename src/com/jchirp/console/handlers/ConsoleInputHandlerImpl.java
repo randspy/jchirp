@@ -4,7 +4,7 @@ import com.jchirp.core.usecases.Command;
 
 public abstract class ConsoleInputHandlerImpl implements ConsoleInputHandler {
     protected ConsoleInputHandler next_handler;
-    protected Command post;
+    protected Command usecase;
 
     @Override
     public void setNext(ConsoleInputHandler handler) {
@@ -12,9 +12,4 @@ public abstract class ConsoleInputHandlerImpl implements ConsoleInputHandler {
     }
 
     public abstract String handleRequest(String consoleInput);
-
-    @Override
-    public void setUsecase(Command post) {
-        this.post = post;
-    }
 }

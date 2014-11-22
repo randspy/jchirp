@@ -2,10 +2,15 @@ package com.jchirp.console.handlers;
 
 import com.jchirp.console.utils.Splitter;
 import com.jchirp.core.messages.RequestMsg;
+import com.jchirp.core.usecases.Command;
 
 public class WriteHandler extends ConsoleInputHandlerImpl{
 
     public static final String ARROW = "->";
+
+    public WriteHandler(Command usecase) {
+        this.usecase = usecase;
+    }
 
     @Override
     public String handleRequest(String consoleInput) {
@@ -15,7 +20,7 @@ public class WriteHandler extends ConsoleInputHandlerImpl{
             Splitter.Output output = splitter.splitUserNameFromContent(ARROW, consoleInput);
             if (!inputIsInvalid(output)) {
                 RequestMsg request = new RequestMsg(output.getUserName(), output.getContent());
-                post.execute(request);
+                usecase.execute(request);
             }
         }
         else {

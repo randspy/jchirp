@@ -14,7 +14,7 @@ public class ReadHandlerTest {
 
     @Before
     public void setUp(){
-        readHandler = new ReadHandler();
+        readHandler = new ReadHandler(null);
     }
     @Test
     public void whenEmptyInputReturnEmptyString(){

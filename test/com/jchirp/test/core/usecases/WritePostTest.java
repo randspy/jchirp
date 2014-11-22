@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class WritePostTest {
 
     private static final String USER = "user";
-    private static final String POST = "post";
+    private static final String POST = "usecase";
     private Command writePostUsecase;
     private DateTime now;
 
@@ -51,7 +51,7 @@ public class WritePostTest {
 
     @Test
     public void new_post_is_added_to_user(){
-        String newPost = "new post";
+        String newPost = "new usecase";
 
         executeRequest(USER, POST);
         executeRequest(USER, newPost);
