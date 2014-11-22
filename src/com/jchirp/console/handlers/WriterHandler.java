@@ -13,6 +13,8 @@ public class WriterHandler extends ConsoleInputHandlerImpl{
 
             Splitter splitter = new Splitter();
             Splitter.Output output = splitter.splitUserNameFromContent("->", consoleInput);
+            if (output.getUserName().isEmpty() || output.getContent().isEmpty())
+                return;
             RequestMsg request = new RequestMsg(output.getUserName(), output.getContent());
             post.execute(request);
         }

@@ -12,9 +12,10 @@ import static org.junit.Assert.assertTrue;
 public class WriteHandlerTest {
 
     public static final String ARROW = "->";
+    private static final String USER = "USER";
+    private static final String CONTENT = "CONTENT";
     private ConsoleInputHandler writeHandler;
     private SpyWritePost spyWritePost;
-    private static final String USER = "USER";
 
     @Before
     public void setUp(){
@@ -33,20 +34,27 @@ public class WriteHandlerTest {
 
     @Test
     public void  whenCorrectHandlerWriteUsecaseExecuted(){
-        String content = "CONTENT";
-
         writeHandler.setUsecase(spyWritePost);
-        writeHandler.handleRequest(USER + ARROW + content);
+        writeHandler.handleRequest(USER + ARROW + CONTENT);
 
         assertEquals(USER, spyWritePost.getRequest().getUserName());
-        assertEquals(content, spyWritePost.getRequest().getContent());
+        assertEquals(CONTENT, spyWritePost.getRequest().getContent());
     }
 
     @Test
-    public void WhenEmptyPostStillWritePost(){
+    public void whenEmptyPostContentNoPostWritten(){
         writeHandler.setUsecase(spyWritePost);
         writeHandler.handleRequest(USER + ARROW);
-        assertEquals(USER, spyWritePost.getRequest().getUserName());
-        assertEquals("", spyWritePost.getRequest().getContent());
+
+        assertEquals(null, spyWritePost.getRequest());
     }
+
+    @Test
+    public void whenEmptyPostUserNameNoPostWritten(){
+        writeHandler.setUsecase(spyWritePost);
+        writeHandler.handleRequest(ARROW + CONTENT);
+
+        assertEquals(null, spyWritePost.getRequest());
+    }
+
 }
