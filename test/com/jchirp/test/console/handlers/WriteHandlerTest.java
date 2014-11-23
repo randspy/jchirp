@@ -15,11 +15,11 @@ public class WriteHandlerTest {
     private static final String USER = "USER";
     private static final String CONTENT = "CONTENT";
     private ConsoleInputHandler writeHandler;
-    private SpyWritePost spyWritePost;
+    private SpyPost spyWritePost;
 
     @Before
     public void setUp(){
-        spyWritePost = new SpyWritePost();
+        spyWritePost = new SpyPost();
         writeHandler = new WriteHandler(spyWritePost);
     }
 
@@ -34,20 +34,20 @@ public class WriteHandlerTest {
     @Test
     public void  whenCorrectHandlerWriteUsecaseExecuted(){
         writeHandler.handleRequest(USER + ARROW + CONTENT);
-        assertEquals(USER, spyWritePost.getRequest().getUserName());
-        assertEquals(CONTENT, spyWritePost.getRequest().getContent());
+        assertEquals(USER, spyWritePost.getRequestMsg().getUserName());
+        assertEquals(CONTENT, spyWritePost.getRequestMsg().getContent());
     }
 
     @Test
     public void whenEmptyPostContentNoPostWritten(){
         writeHandler.handleRequest(USER + ARROW);
-        assertEquals(null, spyWritePost.getRequest());
+        assertEquals(null, spyWritePost.getRequestMsg());
     }
 
     @Test
     public void whenEmptyPostUserNameNoPostWritten(){
         writeHandler.handleRequest(ARROW + CONTENT);
-        assertEquals(null, spyWritePost.getRequest());
+        assertEquals(null, spyWritePost.getRequestMsg());
     }
 
 }

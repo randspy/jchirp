@@ -1,6 +1,6 @@
 package com.jchirp.console.handlers;
 
-import com.jchirp.console.utils.Splitter;
+import com.jchirp.console.formatters.Splitter;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 
@@ -16,8 +16,7 @@ public class WriteHandler extends ConsoleInputHandlerImpl{
     public String handleRequest(String consoleInput) {
         if (consoleInput.contains(ARROW)) {
 
-            Splitter splitter = new Splitter();
-            Splitter.Output output = splitter.splitUserNameFromContent(ARROW, consoleInput);
+            Splitter.Output output = new Splitter().splitUserNameFromContent(ARROW, consoleInput);
             if (!inputIsInvalid(output)) {
                 RequestMsg request = new RequestMsg(output.getUserName(), output.getContent());
                 usecase.execute(request);

@@ -1,6 +1,6 @@
-package com.jchirp.test.console.utils;
+package com.jchirp.test.console.formatters;
 
-import com.jchirp.console.utils.Splitter;
+import com.jchirp.console.formatters.Splitter;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

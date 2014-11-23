@@ -1,4 +1,4 @@
-package com.jchirp.console.utils;
+package com.jchirp.console.formatters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
