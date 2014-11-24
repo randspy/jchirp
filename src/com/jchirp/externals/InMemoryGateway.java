@@ -1,4 +1,4 @@
-package com.jchirp.test.core.external;
+package com.jchirp.externals;
 
 import com.jchirp.core.entities.User;
 import com.jchirp.core.external.Gateway;
@@ -6,10 +6,10 @@ import com.jchirp.core.external.Gateway;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StabGateway implements Gateway {
+public class InMemoryGateway implements Gateway {
     private Map<String, User> allUsers;
 
-    public StabGateway() {
+    public InMemoryGateway() {
         allUsers = new HashMap<String, User>();
     }
 

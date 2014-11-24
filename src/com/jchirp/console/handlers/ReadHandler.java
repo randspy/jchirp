@@ -1,7 +1,7 @@
 package com.jchirp.console.handlers;
 
 import com.jchirp.console.formatters.TimeSpan;
-import com.jchirp.console.time.CurrentTime;
+import com.jchirp.externals.CurrentTime;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.messages.ResponseMsg;

@@ -5,7 +5,7 @@ import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 import com.jchirp.core.usecases.WritePost;
-import com.jchirp.test.core.external.StabGateway;
+import com.jchirp.externals.InMemoryGateway;
 import com.jchirp.test.core.external.StabTimestamp;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -36,7 +36,7 @@ public class WritePostTest {
     public void setUp(){
         writePostUsecase = new WritePost();
         now = new DateTime();
-        Context.gateway = new StabGateway();
+        Context.gateway = new InMemoryGateway();
         Context.timestamp = new StabTimestamp(now);
     }
 

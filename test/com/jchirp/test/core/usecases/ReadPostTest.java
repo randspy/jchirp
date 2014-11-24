@@ -7,7 +7,7 @@ import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.messages.ResponseMsg;
 import com.jchirp.core.usecases.Command;
 import com.jchirp.core.usecases.ReadPost;
-import com.jchirp.test.core.external.StabGateway;
+import com.jchirp.externals.InMemoryGateway;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class ReadPostTest {
     @Before
     public void setUp() throws Exception {
         readPostUsecase = new ReadPost();
-        Context.gateway = new StabGateway();
+        Context.gateway = new InMemoryGateway();
     }
 
     @Test

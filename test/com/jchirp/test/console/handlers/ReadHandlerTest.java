@@ -2,7 +2,7 @@ package com.jchirp.test.console.handlers;
 
 import com.jchirp.console.handlers.ConsoleInputHandler;
 import com.jchirp.console.handlers.ReadHandler;
-import com.jchirp.console.time.CurrentTime;
+import com.jchirp.externals.CurrentTime;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.ResponseMsg;
 import org.joda.time.DateTime;
