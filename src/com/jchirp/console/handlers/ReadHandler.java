@@ -18,18 +18,22 @@ public class ReadHandler extends ConsoleInputHandlerImpl {
         this.time = time;
     }
 
-
     @Override
     public String handleRequest(String consoleInput) {
+        ResponseMsg responseMsg = usecase.execute(new RequestMsg(consoleInput, ""));
+        return responseMsg != null ? formatPostsDisplayedToUser(responseMsg.posts()) : "";
+    }
 
-        RequestMsg requestMsg = new RequestMsg(consoleInput, "");
-        ResponseMsg responseMsg = usecase.execute(requestMsg);
-        if (responseMsg != null) {
-            List<PostMsg> posts = responseMsg.posts();
-            return  posts.get(0).getContent() + " " +
-                    new TimeSpan().timeSpanBetween(posts.get(0).getTimestamp(), time.now());
+    private String formatPostsDisplayedToUser(List<PostMsg> posts) {
+        String postsAsString = "";
+        for(PostMsg postMsg: posts) {
+            postsAsString += postMsg.getContent() + " " +
+                             timeSpanBetweenPostAndNow(postMsg) + "\n";
         }
+        return postsAsString;
+    }
 
-        return "";
+    private String timeSpanBetweenPostAndNow(PostMsg postMsg) {
+        return new TimeSpan().timeSpanBetween(postMsg.getTimestamp(), time.now());
     }
 }

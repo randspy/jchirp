@@ -41,10 +41,11 @@ public class ReadHandlerTest {
     @Test
     public void  whenProvidedExistsReturnItsPosts(){
         ResponseMsg responseMsg = new ResponseMsg();
-        responseMsg.addPost(new PostMsg(USER, "Content", timestamp));
+        responseMsg.addPost(new PostMsg(USER, "Content", timestamp.minusMinutes(2)));
+        responseMsg.addPost(new PostMsg(USER, "Content two", timestamp.minusHours(1)));
 
         spyPost.setResponseMsg(responseMsg);
-        assertEquals("Content (0 seconds)", readHandler.handleRequest(USER));
+        assertEquals("Content (2 minutes)\nContent two (1 hour)\n", readHandler.handleRequest(USER));
         assertEquals(USER, spyPost.getRequestMsg().getUserName());
     }
 
