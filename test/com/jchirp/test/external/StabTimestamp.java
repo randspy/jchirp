@@ -1,4 +1,4 @@
-package com.jchirp.test.core.external;
+package com.jchirp.test.external;
 
 import org.joda.time.DateTime;
 

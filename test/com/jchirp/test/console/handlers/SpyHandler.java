@@ -7,6 +7,7 @@ public class SpyHandler extends ConsoleInputHandlerImpl{
     private boolean wasCalled;
 
     public SpyHandler() {
+        super(null);
         wasCalled = false;
     }
 

@@ -1,5 +1,6 @@
 package com.jchirp;
 
+import com.jchirp.console.handlers.ConsoleInputHandler;
 import com.jchirp.console.handlers.ReadHandler;
 import com.jchirp.console.handlers.WriteHandler;
 import com.jchirp.core.external.Context;
@@ -12,25 +13,36 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CurrentTime timestamp = new CurrentTime();
-        Context.gateway = new InMemoryGateway();
-        Context.timestamp = timestamp;
-
-        ReadHandler readHandler = new ReadHandler(new ReadPost(), timestamp);
-        WriteHandler writeHandler = new WriteHandler(new WritePost());
-        writeHandler.setNext(readHandler);
-
+        ConsoleInputHandler handler = buildIInfrastructure();
 
         while (true) {
-            System.out.print("> ");
+            printPrompt();
+
             String input = System.console().readLine();
-            if (equalsExit(input))
+
+            if (doesExitProgram(input))
                 break;
-            System.out.print(writeHandler.handleRequest(input));
+
+            System.out.print(handler.handleRequest(input));
         }
     }
 
-    private static boolean equalsExit(String input) {
+    private static ConsoleInputHandler buildIInfrastructure() {
+        Context.gateway = new InMemoryGateway();
+        Context.timestamp = new CurrentTime();
+
+        ConsoleInputHandler readHandler = new ReadHandler(new ReadPost());
+        ConsoleInputHandler writeHandler = new WriteHandler(new WritePost());
+        writeHandler.setNext(readHandler);
+
+        return  writeHandler;
+    }
+
+    private static void printPrompt() {
+        System.out.print("> ");
+    }
+
+    private static boolean doesExitProgram(String input) {
         return input.toUpperCase().equals("EXIT");
     }
 }

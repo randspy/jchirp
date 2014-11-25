@@ -6,7 +6,7 @@ import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 import com.jchirp.core.usecases.WritePost;
 import com.jchirp.externals.InMemoryGateway;
-import com.jchirp.test.core.external.StabTimestamp;
+import com.jchirp.test.external.StabTimestamp;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;

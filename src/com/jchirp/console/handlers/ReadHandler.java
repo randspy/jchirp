@@ -1,7 +1,7 @@
 package com.jchirp.console.handlers;
 
 import com.jchirp.console.formatters.TimeSpan;
-import com.jchirp.externals.CurrentTime;
+import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.messages.ResponseMsg;
@@ -11,11 +11,8 @@ import java.util.List;
 
 public class ReadHandler extends ConsoleInputHandlerImpl {
 
-    private final CurrentTime time;
-
-    public ReadHandler(Command usecase, CurrentTime time) {
-        this.usecase = usecase;
-        this.time = time;
+    public ReadHandler(Command usecase) {
+        super(usecase);
     }
 
     @Override
@@ -34,6 +31,6 @@ public class ReadHandler extends ConsoleInputHandlerImpl {
     }
 
     private String timeSpanBetweenPostAndNow(PostMsg postMsg) {
-        return new TimeSpan().timeSpanBetween(postMsg.getTimestamp(), time.now());
+        return new TimeSpan().timeSpanBetween(postMsg.getTimestamp(), Context.timestamp.now());
     }
 }

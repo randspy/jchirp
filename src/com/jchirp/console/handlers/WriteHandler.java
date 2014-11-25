@@ -9,7 +9,7 @@ public class WriteHandler extends ConsoleInputHandlerImpl{
     public static final String ARROW = "->";
 
     public WriteHandler(Command usecase) {
-        this.usecase = usecase;
+        super(usecase);
     }
 
     @Override

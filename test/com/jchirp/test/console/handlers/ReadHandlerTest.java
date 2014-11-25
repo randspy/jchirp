@@ -2,9 +2,10 @@ package com.jchirp.test.console.handlers;
 
 import com.jchirp.console.handlers.ConsoleInputHandler;
 import com.jchirp.console.handlers.ReadHandler;
-import com.jchirp.externals.CurrentTime;
+import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.ResponseMsg;
+import com.jchirp.test.external.StabTimestamp;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,14 +21,11 @@ public class ReadHandlerTest {
 
     @Before
     public void setUp(){
+        Context.timestamp = new StabTimestamp(timestamp);
         spyPost = new SpyPost();
-        readHandler = new ReadHandler(spyPost, new CurrentTime(){
-            @Override
-            public DateTime now(){
-                return timestamp;
-            }
-        });
+        readHandler = new ReadHandler(spyPost);
     }
+
     @Test
     public void whenEmptyInputReturnEmptyString(){
         assertEquals("", readHandler.handleRequest(""));
