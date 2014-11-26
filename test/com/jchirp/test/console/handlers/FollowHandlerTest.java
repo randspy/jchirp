@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class FollowTest {
+public class FollowHandlerTest {
 
     private static final String USER = "user";
     private static final String FOLLOWS = "follows";

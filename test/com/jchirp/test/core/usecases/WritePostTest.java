@@ -15,8 +15,8 @@ import static org.junit.Assert.assertEquals;
 
 public class WritePostTest {
 
-    private static final String USER = "user";
-    private static final String POST = "usecase";
+    private static final String USER_NAME = "user";
+    private static final String POST = "content";
     private Command writePostUsecase;
     private DateTime now;
 
@@ -43,20 +43,20 @@ public class WritePostTest {
     @Test
     public void user_is_added_if_does_not_exist_already(){
 
-        executeRequest(USER, POST);
+        executeRequest(USER_NAME, POST);
 
         int postIndex = 0;
-        assertUser(USER, POST, postIndex);
+        assertUser(USER_NAME, POST, postIndex);
     }
 
     @Test
     public void new_post_is_added_to_user(){
-        String newPost = "new usecase";
+        String newPost = "new content";
 
-        executeRequest(USER, POST);
-        executeRequest(USER, newPost);
+        executeRequest(USER_NAME, POST);
+        executeRequest(USER_NAME, newPost);
 
         int newPostIndex = 1;
-        assertUser(USER, newPost, newPostIndex);
+        assertUser(USER_NAME, newPost, newPostIndex);
     }
 }

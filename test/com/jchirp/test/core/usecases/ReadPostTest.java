@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ReadPostTest {
 
-    private static String USER = "USER";
+    private static String USER_NAME = "USER";
 
     private Command readPostUsecase;
 
@@ -28,20 +28,20 @@ public class ReadPostTest {
 
     @Test
     public void when_user_does_not_exist_empty_response(){
-        ResponseMsg response = readPostUsecase.execute(new RequestMsg(USER, ""));
+        ResponseMsg response = readPostUsecase.execute(new RequestMsg(USER_NAME, ""));
         assertEquals(0, response.posts().size());
     }
 
     @Test
     public void read_user_posts(){
-        User user = new User(USER);
+        User user = new User(USER_NAME);
         DateTime timestamp = new DateTime();
         String content = "content";
         user.addPost(new Post(content, timestamp));
         Context.gateway.setUser(user);
 
-        ResponseMsg responseMsg = readPostUsecase.execute(new RequestMsg(USER, ""));
-        assertEquals(USER, responseMsg.posts().get(0).getUserName());
+        ResponseMsg responseMsg = readPostUsecase.execute(new RequestMsg(USER_NAME, ""));
+        assertEquals(USER_NAME, responseMsg.posts().get(0).getUserName());
         assertEquals(content, responseMsg.posts().get(0).getContent());
         assertEquals(timestamp, responseMsg.posts().get(0).getTimestamp());
     }
