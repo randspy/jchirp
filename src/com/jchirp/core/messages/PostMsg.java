@@ -2,7 +2,7 @@ package com.jchirp.core.messages;
 
 import org.joda.time.DateTime;
 
-public class PostMsg {
+public class PostMsg implements Comparable<PostMsg>{
     private final String userName;
     private final String content;
     private final DateTime timestamp;
@@ -20,4 +20,9 @@ public class PostMsg {
     public String getContent() { return content; }
 
     public DateTime getTimestamp() { return timestamp; }
+
+    @Override
+    public int compareTo(PostMsg postMsg) {
+        return timestamp.compareTo(postMsg.timestamp);
+    }
 }

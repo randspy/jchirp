@@ -7,6 +7,7 @@ import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.messages.ResponseMsg;
 import com.jchirp.core.usecases.Command;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ReadHandler extends ConsoleInputHandlerImpl {
@@ -22,7 +23,9 @@ public class ReadHandler extends ConsoleInputHandlerImpl {
     }
 
     private String formatPostsDisplayedToUser(List<PostMsg> posts) {
+
         String postsAsString = "";
+        Collections.reverse(posts);
         for(PostMsg postMsg: posts) {
             postsAsString += postMsg.getContent() + " " +
                              timeSpanBetweenPostAndNow(postMsg) + "\n";
