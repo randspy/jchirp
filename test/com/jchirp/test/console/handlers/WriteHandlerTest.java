@@ -40,13 +40,13 @@ public class WriteHandlerTest {
 
     @Test
     public void whenEmptyPostContentNoPostWritten(){
-        writeHandler.handleRequest(USER + ARROW);
+        assertEquals("", writeHandler.handleRequest(USER + ARROW));
         assertEquals(null, spyWritePost.getRequestMsg());
     }
 
     @Test
     public void whenEmptyPostUserNameNoPostWritten(){
-        writeHandler.handleRequest(ARROW + CONTENT);
+        assertEquals("", writeHandler.handleRequest(ARROW + CONTENT));
         assertEquals(null, spyWritePost.getRequestMsg());
     }
 
