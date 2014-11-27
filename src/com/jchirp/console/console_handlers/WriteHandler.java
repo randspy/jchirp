@@ -1,4 +1,4 @@
-package com.jchirp.console.handlers;
+package com.jchirp.console.console_handlers;
 
 import com.jchirp.console.formatters.Splitter;
 import com.jchirp.core.messages.RequestMsg;

@@ -1,4 +1,4 @@
-package com.jchirp.test.console.handlers;
+package com.jchirp.test.console.console_handlers;
 
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.messages.ResponseMsg;

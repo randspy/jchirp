@@ -1,7 +1,7 @@
-package com.jchirp.test.console.handlers;
+package com.jchirp.test.console.console_handlers;
 
-import com.jchirp.console.handlers.ConsoleInputHandler;
-import com.jchirp.console.handlers.WriteHandler;
+import com.jchirp.console.console_handlers.ConsoleInputHandler;
+import com.jchirp.console.console_handlers.WriteHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class WriteHandlerTest {
 
-    public static final String ARROW = "->";
+    private static final String ARROW = "->";
     private static final String USER = "USER";
     private static final String CONTENT = "CONTENT";
     private ConsoleInputHandler writeHandler;
@@ -27,8 +27,9 @@ public class WriteHandlerTest {
     public void whenNotCorrectHandlerGoToNextHandler(){
         SpyHandler spyhandler = new SpyHandler();
         writeHandler.setNext(spyhandler);
-        writeHandler.handleRequest("");
+        String response = writeHandler.handleRequest("");
         assertTrue(spyhandler.wasCalled());
+        assertEquals(spyhandler.getSpyHandlerResponse(), response);
     }
 
     @Test

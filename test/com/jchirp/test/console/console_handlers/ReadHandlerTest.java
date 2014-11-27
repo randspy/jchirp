@@ -1,7 +1,7 @@
-package com.jchirp.test.console.handlers;
+package com.jchirp.test.console.console_handlers;
 
-import com.jchirp.console.handlers.ConsoleInputHandler;
-import com.jchirp.console.handlers.ReadHandler;
+import com.jchirp.console.console_handlers.ConsoleInputHandler;
+import com.jchirp.console.console_handlers.ReadHandler;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.ResponseMsg;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ReadHandlerTest {
 
-    public static final String USER = "USER";
+    private static final String USER = "USER";
     private ConsoleInputHandler readHandler;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();

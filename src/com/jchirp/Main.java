@@ -1,8 +1,8 @@
 package com.jchirp;
 
-import com.jchirp.console.handlers.ConsoleInputHandler;
-import com.jchirp.console.handlers.ReadHandler;
-import com.jchirp.console.handlers.WriteHandler;
+import com.jchirp.console.console_handlers.ConsoleInputHandler;
+import com.jchirp.console.console_handlers.ReadHandler;
+import com.jchirp.console.console_handlers.WriteHandler;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.usecases.ReadPost;
 import com.jchirp.core.usecases.WritePost;

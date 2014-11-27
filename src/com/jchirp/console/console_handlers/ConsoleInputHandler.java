@@ -1,4 +1,4 @@
-package com.jchirp.console.handlers;
+package com.jchirp.console.console_handlers;
 
 /*
  * Interface for a chain of responsibility pattern

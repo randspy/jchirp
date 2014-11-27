@@ -1,7 +1,7 @@
-package com.jchirp.test.console.handlers;
+package com.jchirp.test.console.console_handlers;
 
-import com.jchirp.console.handlers.ConsoleInputHandler;
-import com.jchirp.console.handlers.FollowHandler;
+import com.jchirp.console.console_handlers.ConsoleInputHandler;
+import com.jchirp.console.console_handlers.FollowHandler;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,8 +26,9 @@ public class FollowHandlerTest {
     public void whenNotCorrectHandlerGoToNextHandler(){
         SpyHandler spyhandler = new SpyHandler();
         followHandler.setNext(spyhandler);
-        followHandler.handleRequest("");
+        String response = followHandler.handleRequest("");
         assertTrue(spyhandler.wasCalled());
+        assertEquals(spyhandler.getSpyHandlerResponse(), response);
     }
 
     @Test
