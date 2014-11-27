@@ -15,13 +15,13 @@ public class ReadPost implements Command {
         ResponseMsg responseMsg = new ResponseMsg();
         if (user != null) {
             for (Post post : user.getPosts()) {
-                responseMsg.addPost(
-                        new PostMsg(
-                                requestMsg.getUserName(),
-                                post.getContent(),
-                                post.getTimestamp()));
+                responseMsg.addPost(buildPostMsg(requestMsg, post));
             }
         }
         return responseMsg;
+    }
+
+    private PostMsg buildPostMsg(RequestMsg requestMsg, Post post) {
+        return new PostMsg(requestMsg.getUserName(), post.getContent(), post.getTimestamp());
     }
 }

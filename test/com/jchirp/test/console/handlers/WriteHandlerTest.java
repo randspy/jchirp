@@ -37,17 +37,4 @@ public class WriteHandlerTest {
         assertEquals(USER, spyWritePost.getRequestMsg().getUserName());
         assertEquals(CONTENT, spyWritePost.getRequestMsg().getContent());
     }
-
-    @Test
-    public void whenEmptyPostContentNoPostWritten(){
-        assertEquals("", writeHandler.handleRequest(USER + ARROW));
-        assertEquals(null, spyWritePost.getRequestMsg());
-    }
-
-    @Test
-    public void whenEmptyPostUserNameNoPostWritten(){
-        assertEquals("", writeHandler.handleRequest(ARROW + CONTENT));
-        assertEquals(null, spyWritePost.getRequestMsg());
-    }
-
 }

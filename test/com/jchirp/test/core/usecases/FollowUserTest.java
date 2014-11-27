@@ -67,5 +67,16 @@ public class FollowUserTest {
         assertEquals(1, getUser().getFollowedUsers().size());
     }
 
+    @Test
+    public void whenUserInInputNotPresentDoNothing(){
+        followUserUsecase.execute(new RequestMsg("", FOLLOWED_USER_NAME));
+        assertNull(getUser());
+    }
+
+    @Test
+    public void whenFollowedUserInInputNotPresentDoNothing(){
+        followUserUsecase.execute(new RequestMsg(USER_NAME, ""));
+        assertNull(Context.gateway.getUser(""));
+    }
 
 }

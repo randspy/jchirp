@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class WritePostTest {
 
@@ -41,7 +42,7 @@ public class WritePostTest {
     }
 
     @Test
-    public void user_is_added_if_does_not_exist_already(){
+    public void userIsAddedIfDoesNotExistAlready(){
 
         executeRequest(USER_NAME, POST);
 
@@ -50,7 +51,7 @@ public class WritePostTest {
     }
 
     @Test
-    public void new_post_is_added_to_user(){
+    public void newPostIsAddedToUser(){
         String newPost = "new content";
 
         executeRequest(USER_NAME, POST);
@@ -58,5 +59,17 @@ public class WritePostTest {
 
         int newPostIndex = 1;
         assertUser(USER_NAME, newPost, newPostIndex);
+    }
+
+    @Test
+    public void whenUserFromInputIsEmptyDoNoting(){
+        executeRequest("", POST);
+        assertNull(Context.gateway.getUser(""));
+    }
+
+    @Test
+    public void whenContentFromInputIsEmptyDoNoting(){
+        executeRequest(USER_NAME, "");
+        assertNull(Context.gateway.getUser(USER_NAME));
     }
 }

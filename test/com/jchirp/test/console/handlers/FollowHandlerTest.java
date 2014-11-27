@@ -31,22 +31,10 @@ public class FollowHandlerTest {
     }
 
     @Test
-    public void  whenCorrectHandlerWriteUsecaseExecuted(){
+    public void  whenCorrectHandlerFollowUsecaseExecuted(){
         followHandler.handleRequest(USER + FOLLOWS + FOLLOWED_USER);
         assertEquals(USER, spyFollowPost.getRequestMsg().getUserName());
         assertEquals(FOLLOWED_USER, spyFollowPost.getRequestMsg().getContent());
-    }
-
-    @Test
-    public void whenFollowedUserIsEmptyDoNothing(){
-        assertEquals("", followHandler.handleRequest(USER + FOLLOWS));
-        assertEquals(null, spyFollowPost.getRequestMsg());
-    }
-
-    @Test
-    public void whenNoFollowsKeywordDoNothing(){
-        assertEquals("", followHandler.handleRequest(FOLLOWS + FOLLOWED_USER));
-        assertEquals(null, spyFollowPost.getRequestMsg());
     }
 
 }
