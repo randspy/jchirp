@@ -1,12 +1,14 @@
 package com.jchirp.core.entities;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class User {
     private String userName;
     private List<Post> posts = new LinkedList<Post>();
-    private List<String> followedUsers = new LinkedList<String>();
+    private Set<String> followedUsers = new HashSet<String>();
 
     public User(String userName) {
         this.userName = userName;
@@ -24,7 +26,7 @@ public class User {
         posts.add(post);
     }
 
-    public List<String> getFollowedUsers() {
+    public Set<String> getFollowedUsers() {
         return followedUsers;
     }
 

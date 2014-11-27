@@ -19,6 +19,14 @@ public class FollowUserTest {
     private Command followUserUsecase;
     private RequestMsg requestMsg;
 
+    private User getUser() {
+        return Context.gateway.getUser(USER_NAME);
+    }
+
+    private void setUser(String userName) {
+        Context.gateway.setUser(new User(userName));
+    }
+
     @Before
     public void setUp() throws Exception {
         followUserUsecase = new FollowUser();
@@ -29,23 +37,35 @@ public class FollowUserTest {
     @Test
     public void whenUserDoesNotExistDoNothing(){
         followUserUsecase.execute(requestMsg);
-        assertNull(Context.gateway.getUser(USER_NAME));
+        assertNull(getUser());
     }
 
     @Test
     public void whenFollowedUserDoesNotExistDoNothing(){
-        Context.gateway.setUser(new User(USER_NAME));
+        String userName = USER_NAME;
+        setUser(userName);
         followUserUsecase.execute(requestMsg);
-        assertEquals(0, Context.gateway.getUser(USER_NAME).getFollowedUsers().size());
+        assertEquals(0, getUser().getFollowedUsers().size());
     }
 
     @Test
     public void follow_user(){
-        Context.gateway.setUser(new User(USER_NAME));
-        Context.gateway.setUser(new User(FOLLOWED_USER_NAME));
+        setUser(USER_NAME);
+        setUser(FOLLOWED_USER_NAME);
         followUserUsecase.execute(requestMsg);
 
-        assertEquals(FOLLOWED_USER_NAME, Context.gateway.getUser(USER_NAME).getFollowedUsers().get(0));
+        assertEquals(FOLLOWED_USER_NAME, getUser().getFollowedUsers().iterator().next());
     }
+
+    @Test
+    public void cantFollowUserMoreThanOneTime(){
+        setUser(USER_NAME);
+        setUser(FOLLOWED_USER_NAME);
+        followUserUsecase.execute(requestMsg);
+        followUserUsecase.execute(requestMsg);
+
+        assertEquals(1, getUser().getFollowedUsers().size());
+    }
+
 
 }
