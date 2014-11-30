@@ -23,7 +23,7 @@ public class WallHandler extends ConsoleInputHandlerImpl {
         if(consoleInput.contains(WALL))
         {
             Splitter.Output output = new Splitter().splitUserNameFromContent(WALL, consoleInput);
-            ResponseMsg responseMsg = usecase.execute(new RequestMsg(output.getUserName(),""));
+            ResponseMsg responseMsg = usecase.execute(new RequestMsg(output.getBeforeSplitElement(),""));
             return responseMsg != null ? formatPostsDisplayedToUser(responseMsg.posts()) : "";
         }
         else
