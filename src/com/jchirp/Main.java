@@ -1,10 +1,10 @@
 package com.jchirp;
 
-import com.jchirp.console.console_handlers.ConsoleInputHandler;
-import com.jchirp.console.console_handlers.ReadHandler;
-import com.jchirp.console.console_handlers.WriteHandler;
+import com.jchirp.console.console_handlers.*;
 import com.jchirp.core.external.Context;
+import com.jchirp.core.usecases.FollowUser;
 import com.jchirp.core.usecases.ReadPost;
+import com.jchirp.core.usecases.ShowWall;
 import com.jchirp.core.usecases.WritePost;
 import com.jchirp.externals.CurrentTime;
 import com.jchirp.externals.InMemoryGateway;
@@ -33,7 +33,12 @@ public class Main {
 
         ConsoleInputHandler readHandler = new ReadHandler(new ReadPost());
         ConsoleInputHandler writeHandler = new WriteHandler(new WritePost());
-        writeHandler.setNext(readHandler);
+        ConsoleInputHandler followHandler = new FollowHandler(new FollowUser());
+        ConsoleInputHandler wallHandler = new WallHandler(new ShowWall());
+
+        writeHandler.setNext(followHandler);
+        followHandler.setNext(wallHandler);
+        wallHandler.setNext(readHandler);
 
         return  writeHandler;
     }

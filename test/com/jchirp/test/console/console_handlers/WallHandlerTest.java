@@ -43,12 +43,12 @@ public class WallHandlerTest {
 
         ResponseMsg responseMsg = new ResponseMsg();
         responseMsg.addPost(new PostMsg(USER_NAME, "Content one", timestamp.minusHours(2)));
-        responseMsg.addPost(new PostMsg("fallowed user", "Content of followed user", timestamp.minusHours(1)));
-        responseMsg.addPost(new PostMsg(USER_NAME, "Content two", timestamp.minusMinutes(1)));
+        responseMsg.addPost(new PostMsg("fallowed user", "Content of followed user", timestamp.minusMinutes(1)));
+        responseMsg.addPost(new PostMsg(USER_NAME, "Content two", timestamp.minusHours(1)));
 
         spyPost.setResponseMsg(responseMsg);
-        String expectedResponse = USER_NAME + " - Content two (1 minute)\n";
-        expectedResponse += "fallowed user" + " - Content of followed user (1 hour)\n";
+        String expectedResponse = "fallowed user" + " - Content of followed user (1 minute)\n";
+        expectedResponse += USER_NAME + " - Content two (1 hour)\n";
         expectedResponse += USER_NAME + " - Content one (2 hours)\n";
         assertEquals(expectedResponse, handler.handleRequest(USER_NAME + WALL));
         assertEquals(USER_NAME, spyPost.getRequestMsg().getUserName());

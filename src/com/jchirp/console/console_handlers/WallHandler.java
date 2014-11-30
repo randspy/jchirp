@@ -37,7 +37,7 @@ public class WallHandler extends ConsoleInputHandlerImpl {
     private String formatPostsDisplayedToUser(List<PostMsg> posts) {
 
         String postsAsString = "";
-        Collections.reverse(posts);
+        Collections.sort(posts, Collections.reverseOrder());
         for(PostMsg postMsg: posts) {
             postsAsString += postMsg.getUserName() + " - " +
                     postMsg.getContent() + " " +

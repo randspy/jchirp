@@ -11,7 +11,7 @@ public class FollowUser implements Command {
 
         User user = Context.gateway.getUser(requestMsg.getUserName());
         User followed_user = Context.gateway.getUser(requestMsg.getContent());
-        if (user != null && followed_user != null) {
+        if (user != null && followed_user != null && !user.equals(followed_user)) {
             user.addFollowedUsers(requestMsg.getContent());
         }
 

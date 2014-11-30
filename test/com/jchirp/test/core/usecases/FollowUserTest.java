@@ -58,13 +58,22 @@ public class FollowUserTest {
     }
 
     @Test
-    public void cantFollowUserMoreThanOneTime(){
+    public void userCantFollowOtherUserMoreThanOneTime(){
         setUser(USER_NAME);
         setUser(FOLLOWED_USER_NAME);
         followUserUsecase.execute(requestMsg);
         followUserUsecase.execute(requestMsg);
 
         assertEquals(1, getUser().getFollowedUsers().size());
+    }
+
+
+    @Test
+    public void userCantFollowHimself(){
+        setUser(USER_NAME);
+        followUserUsecase.execute(new RequestMsg(USER_NAME, USER_NAME));
+
+        assertEquals(0, getUser().getFollowedUsers().size());
     }
 
     @Test
