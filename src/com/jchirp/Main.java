@@ -20,7 +20,7 @@ public class Main {
 
             String input = System.console().readLine();
 
-            if (doesExitProgram(input))
+            if (doesProgramExit(input))
                 break;
 
             System.out.print(handler.handleRequest(input));
@@ -47,7 +47,7 @@ public class Main {
         System.out.print("> ");
     }
 
-    private static boolean doesExitProgram(String input) {
+    private static boolean doesProgramExit(String input) {
         return input.toUpperCase().equals("EXIT");
     }
 }

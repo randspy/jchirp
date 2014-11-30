@@ -26,9 +26,8 @@ public class FollowHandlerTest {
     public void whenNotCorrectHandlerGoToNextHandler(){
         SpyHandler spyhandler = new SpyHandler();
         followHandler.setNext(spyhandler);
-        String response = followHandler.handleRequest("");
+        assertEquals(spyhandler.getSpyHandlerResponse(), followHandler.handleRequest(""));
         assertTrue(spyhandler.wasCalled());
-        assertEquals(spyhandler.getSpyHandlerResponse(), response);
     }
 
     @Test

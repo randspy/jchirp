@@ -17,9 +17,8 @@ public class ShowWall implements Command {
 
         responseMsg = new ResponseMsg();
 
-        String userName = requestMsg.getUserName();
-        addPostsForUserWithName(userName);
-        addFollowedUsersPosts(userName);
+        addUserPosts(requestMsg.getUserName());
+        addFollowedUsersPosts(requestMsg.getUserName());
 
         return responseMsg;
     }
@@ -28,13 +27,13 @@ public class ShowWall implements Command {
         User user = Context.gateway.getUser(userName);
         if(user != null) {
             Set<String> followedUsers = user.getFollowedUsers();
-            for(String followedUserName : followedUsers) {
-                addPostsForUserWithName(followedUserName);
+            for(String name : followedUsers) {
+                addUserPosts(name);
             }
         }
     }
 
-    private void addPostsForUserWithName(String userName) {
+    private void addUserPosts(String userName) {
         User user = Context.gateway.getUser(userName);
 
         if (user != null) {

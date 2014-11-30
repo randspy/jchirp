@@ -64,7 +64,7 @@ public class SplitterTest {
     }
 
     @Test
-    public void whenSeparatorPresentMoreThanOnceSplitOnlyWithFirtsOccurance(){
+    public void whenSeparatorPresentMoreThanOnceSplitOnlyWithFirstOccurrence(){
         assertSplit("USER -> CONTENT -> MORE CONTENT", "USER", "CONTENT -> MORE CONTENT");
     }
 }

@@ -22,7 +22,6 @@ public class WriteHandler extends ConsoleInputHandlerImpl{
             return next_handler.handleRequest(consoleInput);
         }
 
-        //there nothing to return when we have a write usecase, so we do not case about the output
         return "";
     }
 }

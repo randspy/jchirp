@@ -46,8 +46,7 @@ public class WritePostTest {
 
         executeRequest(USER_NAME, POST);
 
-        int postIndex = 0;
-        assertUser(USER_NAME, POST, postIndex);
+        assertUser(USER_NAME, POST, 0);
     }
 
     @Test
@@ -57,8 +56,7 @@ public class WritePostTest {
         executeRequest(USER_NAME, POST);
         executeRequest(USER_NAME, newPost);
 
-        int newPostIndex = 1;
-        assertUser(USER_NAME, newPost, newPostIndex);
+        assertUser(USER_NAME, newPost, 1);
     }
 
     @Test
