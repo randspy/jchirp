@@ -15,6 +15,8 @@ Possible operations
 
     posting: <user name> -> <message>
     reading: <user name>
+    following: <user name> follows <another user>
+    wall: <user name> wall
 
     exit: exit
 
