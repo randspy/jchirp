@@ -42,13 +42,14 @@ public class ShowWallTest {
     }
 
     @Test
-    public void whenUserDoesNotExistEmptyResponse(){
+    public void
+    whenUserDoesNotExistNoPostsReturned(){
         ResponseMsg responseMsg = usecase.execute(new RequestMsg("user name", ""));
         assertEquals(0, responseMsg.posts().size());
     }
 
-    @Test
-    public void whenUserNotFollowingAnyoneReturnOnlyUserPosts(){
+    @Test public void
+    whenUserIsNotFollowingAnyoneReturnOnlyUserPosts(){
         User user = new User(USER_NAME);
         addUserToGateway(user, "text one");
         addUserToGateway(user, "text two");
@@ -56,8 +57,8 @@ public class ShowWallTest {
         assertUsacaseResponse(USER_NAME, "text two", 1);
     }
 
-    @Test
-    public void whenUserContainsFollowingUsersReturnAlsoTheirPosts(){
+    @Test public void
+    whenUserContainsFollowingUsersReturnAlsoTheirPosts(){
         String followedUserName = "followed user";
         User followedUser = new User(followedUserName);
         addUserToGateway(followedUser, "followed user text");

@@ -26,14 +26,14 @@ public class ReadPostTest {
         Context.gateway = new InMemoryGateway();
     }
 
-    @Test
-    public void when_user_does_not_exist_empty_response(){
+    @Test public void
+    whenUserNotPresentNoPostsReturned(){
         ResponseMsg response = readPostUsecase.execute(new RequestMsg(USER_NAME, ""));
         assertEquals(0, response.posts().size());
     }
 
-    @Test
-    public void read_user_posts(){
+    @Test public void
+    readUsersPosts(){
         User user = new User(USER_NAME);
         DateTime timestamp = new DateTime();
         String content = "content";

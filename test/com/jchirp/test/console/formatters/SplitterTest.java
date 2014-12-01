@@ -27,44 +27,44 @@ public class SplitterTest {
         splitter = new Splitter();
     }
 
-    @Test
-    public void whenInputIsEmptyReturnsEmptyValues(){
+    @Test public void
+    whenInputIsEmptyReturnsEmptyValues(){
         assertSplit("", "", "");
     }
 
-    @Test
-    public void whenSeparatorEmptyThrow(){
+    @Test public void
+    whenSeparatorEmptyThrow(){
         exception.expect(IllegalArgumentException.class);
         splitter.splitUserNameFromContent("", "");
     }
 
-    @Test
-    public void  whenInputAsExpectedReturnValues(){
+    @Test public void
+    whenInputAsExpectedReturnValues(){
         assertSplit("USER->CONTENT", "USER", "CONTENT");
     }
 
-    @Test
-    public void whenNoContentReturnsNothing(){
+    @Test public void
+    whenNoContentReturnNothing(){
         assertSplit("USER->", "USER", "");
         }
 
-    @Test
-    public void whenNoUserReturnsNothing(){
+    @Test public void
+    whenNoUserReturnNothing(){
         assertSplit("->CONTENT", "", "CONTENT");
     }
 
-    @Test
-    public void whenNoUserAndContentReturnsNothing(){
+    @Test public void
+    whenNoUserAndContentReturnNothing(){
         assertSplit("->", "", "");
     }
 
-    @Test
-    public void whiteSpacesDoesNotMatter(){
+    @Test public void
+    whiteSpacesDoesNotMatter(){
         assertSplit(" USER -> CONTENT ", "USER", "CONTENT");
     }
 
-    @Test
-    public void whenSeparatorPresentMoreThanOnceSplitOnlyWithFirstOccurrence(){
+    @Test public void
+    whenSeparatorPresentMoreThanOnceSplitOnlyWithFirstOccurrence(){
         assertSplit("USER -> CONTENT -> MORE CONTENT", "USER", "CONTENT -> MORE CONTENT");
     }
 }

@@ -29,17 +29,19 @@ public class WallHandlerTest {
         handler = new WallHandler(spyPost);
     }
 
-    @Test
-    public void whenNotCorrectHandlerGoToNextHandler(){
-        SpyHandler spyhandler = new SpyHandler();
-        handler.setNext(spyhandler);
+    @Test public void
+    whenNotCorrectHandlerGoToNextHandler(){
+        SpyHandler nextHandler = new SpyHandler();
+
+        handler.setNext(nextHandler);
         String response = handler.handleRequest("");
-        assertTrue(spyhandler.wasCalled());
-        assertEquals(spyhandler.getSpyHandlerResponse(), response);
+
+        assertTrue(nextHandler.wasCalled());
+        assertEquals(nextHandler.getSpyHandlerResponse(), response);
     }
 
-    @Test
-    public void whenCorrectHandlerWallUsecaseExecuted(){
+    @Test public void
+    whenCorrectHandlerShowUserWall(){
 
         ResponseMsg responseMsg = new ResponseMsg();
         responseMsg.addPost(new PostMsg(USER_NAME, "Content one", timestamp.minusHours(2)));
@@ -50,6 +52,7 @@ public class WallHandlerTest {
         String expectedResponse = "fallowed user" + " - Content of followed user (1 minute)\n";
         expectedResponse += USER_NAME + " - Content two (1 hour)\n";
         expectedResponse += USER_NAME + " - Content one (2 hours)\n";
+
         assertEquals(expectedResponse, handler.handleRequest(USER_NAME + WALL));
         assertEquals(USER_NAME, spyPost.getRequestMsg().getUserName());
     }

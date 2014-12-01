@@ -14,27 +14,30 @@ public class WriteHandlerTest {
     private static final String ARROW = "->";
     private static final String USER = "USER";
     private static final String CONTENT = "CONTENT";
-    private ConsoleInputHandler writeHandler;
+    private ConsoleInputHandler handler;
     private SpyPost spyWritePost;
 
     @Before
     public void setUp(){
         spyWritePost = new SpyPost();
-        writeHandler = new WriteHandler(spyWritePost);
+        handler = new WriteHandler(spyWritePost);
     }
 
-    @Test
-    public void whenNotCorrectHandlerGoToNextHandler(){
-        SpyHandler spyhandler = new SpyHandler();
-        writeHandler.setNext(spyhandler);
-        String response = writeHandler.handleRequest("");
-        assertTrue(spyhandler.wasCalled());
-        assertEquals(spyhandler.getSpyHandlerResponse(), response);
+    @Test public void
+    whenNotCorrectHandlerGoToNextHandler(){
+        SpyHandler nextHandler = new SpyHandler();
+
+        handler.setNext(nextHandler);
+        String response = handler.handleRequest("");
+
+        assertTrue(nextHandler.wasCalled());
+        assertEquals(nextHandler.getSpyHandlerResponse(), response);
     }
 
-    @Test
-    public void  whenCorrectHandlerWriteUsecaseExecuted(){
-        writeHandler.handleRequest(USER + ARROW + CONTENT);
+    @Test public void
+    whenCorrectHandlerWritePost(){
+        handler.handleRequest(USER + ARROW + CONTENT);
+
         assertEquals(USER, spyWritePost.getRequestMsg().getUserName());
         assertEquals(CONTENT, spyWritePost.getRequestMsg().getContent());
     }

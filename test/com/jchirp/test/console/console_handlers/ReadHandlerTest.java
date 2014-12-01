@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ReadHandlerTest {
 
     private static final String USER = "USER";
-    private ConsoleInputHandler readHandler;
+    private ConsoleInputHandler handler;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 
@@ -23,27 +23,27 @@ public class ReadHandlerTest {
     public void setUp(){
         Context.timestamp = new StabTimestamp(timestamp);
         spyPost = new SpyPost();
-        readHandler = new ReadHandler(spyPost);
+        handler = new ReadHandler(spyPost);
     }
 
-    @Test
-    public void whenEmptyInputReturnEmptyString(){
-        assertEquals("", readHandler.handleRequest(""));
+    @Test public void
+    whenEmptyInputReturnEmptyString(){
+        assertEquals("", handler.handleRequest(""));
     }
 
-    @Test
-    public void whenProvidedUserDoesNotExistReturnEmptyString(){
-        assertEquals("", readHandler.handleRequest(USER));
+    @Test public void
+    whenProvidedUserDoesNotExistReturnEmptyString(){
+        assertEquals("", handler.handleRequest(USER));
     }
 
-    @Test
-    public void  whenProvidedExistsReturnItsPosts(){
+    @Test public void
+    whenProvidedExistsReturnItsPosts(){
         ResponseMsg responseMsg = new ResponseMsg();
         responseMsg.addPost(new PostMsg(USER, "Content", timestamp.minusHours(2)));
         responseMsg.addPost(new PostMsg(USER, "Content two", timestamp.minusMinutes(1)));
 
         spyPost.setResponseMsg(responseMsg);
-        assertEquals("Content two (1 minute)\nContent (2 hours)\n", readHandler.handleRequest(USER));
+        assertEquals("Content two (1 minute)\nContent (2 hours)\n", handler.handleRequest(USER));
         assertEquals(USER, spyPost.getRequestMsg().getUserName());
     }
 

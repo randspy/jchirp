@@ -34,22 +34,22 @@ public class FollowUserTest {
         Context.gateway = new InMemoryGateway();
     }
 
-    @Test
-    public void whenUserDoesNotExistDoNothing(){
+    @Test public void
+    whenUserDoesNotExistDoNothing(){
         followUserUsecase.execute(requestMsg);
         assertNull(getUser());
     }
 
-    @Test
-    public void whenFollowedUserDoesNotExistDoNothing(){
+    @Test public void
+    whenFollowedUserDoesNotExistDoNothing(){
         String userName = USER_NAME;
         setUser(userName);
         followUserUsecase.execute(requestMsg);
         assertEquals(0, getUser().getFollowedUsers().size());
     }
 
-    @Test
-    public void follow_user(){
+    @Test public void
+    followUser(){
         setUser(USER_NAME);
         setUser(FOLLOWED_USER_NAME);
         followUserUsecase.execute(requestMsg);
@@ -57,8 +57,8 @@ public class FollowUserTest {
         assertEquals(FOLLOWED_USER_NAME, getUser().getFollowedUsers().iterator().next());
     }
 
-    @Test
-    public void userCantFollowOtherUserMoreThanOneTime(){
+    @Test public void
+    userCantFollowOtherUserMoreThanOneTime(){
         setUser(USER_NAME);
         setUser(FOLLOWED_USER_NAME);
         followUserUsecase.execute(requestMsg);
@@ -68,22 +68,22 @@ public class FollowUserTest {
     }
 
 
-    @Test
-    public void userCantFollowHimself(){
+    @Test public void
+    userCantFollowHimself(){
         setUser(USER_NAME);
         followUserUsecase.execute(new RequestMsg(USER_NAME, USER_NAME));
 
         assertEquals(0, getUser().getFollowedUsers().size());
     }
 
-    @Test
-    public void whenUserInInputNotPresentDoNothing(){
+    @Test public void
+    whenUserNotPresentInInputDoNothing(){
         followUserUsecase.execute(new RequestMsg("", FOLLOWED_USER_NAME));
         assertNull(getUser());
     }
 
-    @Test
-    public void whenFollowedUserInInputNotPresentDoNothing(){
+    @Test public void
+    whenFollowedUserNotPresentInInputDoNothing(){
         followUserUsecase.execute(new RequestMsg(USER_NAME, ""));
         assertNull(Context.gateway.getUser(""));
     }

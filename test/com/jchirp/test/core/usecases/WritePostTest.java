@@ -41,16 +41,16 @@ public class WritePostTest {
         Context.timestamp = new StabTimestamp(now);
     }
 
-    @Test
-    public void userIsAddedIfDoesNotExistAlready(){
+    @Test public void
+    userIsAddedIfDoesNotExistAlready(){
 
         executeRequest(USER_NAME, POST);
 
         assertUser(USER_NAME, POST, 0);
     }
 
-    @Test
-    public void newPostIsAddedToUser(){
+    @Test public void
+    newPostIsAddedToUser(){
         String newPost = "new content";
 
         executeRequest(USER_NAME, POST);
@@ -59,14 +59,14 @@ public class WritePostTest {
         assertUser(USER_NAME, newPost, 1);
     }
 
-    @Test
-    public void whenUserFromInputIsEmptyDoNoting(){
+    @Test public void
+    whenUserFromInputIsEmptyDoNoting(){
         executeRequest("", POST);
         assertNull(Context.gateway.getUser(""));
     }
 
-    @Test
-    public void whenContentFromInputIsEmptyDoNoting(){
+    @Test public void
+    whenContentFromInputIsEmptyDoNoting(){
         executeRequest(USER_NAME, "");
         assertNull(Context.gateway.getUser(USER_NAME));
     }

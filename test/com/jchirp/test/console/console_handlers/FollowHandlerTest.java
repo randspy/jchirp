@@ -13,26 +13,28 @@ public class FollowHandlerTest {
     private static final String USER = "user";
     private static final String FOLLOWS = "follows";
     private static final String FOLLOWED_USER = "followed user";
-    private ConsoleInputHandler followHandler;
+    private ConsoleInputHandler handler;
     private SpyPost spyFollowPost;
 
     @Before
     public void setUp(){
         spyFollowPost = new SpyPost();
-        followHandler = new FollowHandler(spyFollowPost);
+        handler = new FollowHandler(spyFollowPost);
     }
 
-    @Test
-    public void whenNotCorrectHandlerGoToNextHandler(){
-        SpyHandler spyhandler = new SpyHandler();
-        followHandler.setNext(spyhandler);
-        assertEquals(spyhandler.getSpyHandlerResponse(), followHandler.handleRequest(""));
-        assertTrue(spyhandler.wasCalled());
+    @Test public void
+    whenNotCorrectHandlerGoToNextHandler(){
+        SpyHandler nextHandler = new SpyHandler();
+
+        handler.setNext(nextHandler);
+        assertEquals(nextHandler.getSpyHandlerResponse(), handler.handleRequest(""));
+        assertTrue(nextHandler.wasCalled());
     }
 
-    @Test
-    public void  whenCorrectHandlerFollowUsecaseExecuted(){
-        followHandler.handleRequest(USER + FOLLOWS + FOLLOWED_USER);
+    @Test public void
+    whenCorrectHandlerAddFollowedUser(){
+        handler.handleRequest(USER + FOLLOWS + FOLLOWED_USER);
+
         assertEquals(USER, spyFollowPost.getRequestMsg().getUserName());
         assertEquals(FOLLOWED_USER, spyFollowPost.getRequestMsg().getContent());
     }

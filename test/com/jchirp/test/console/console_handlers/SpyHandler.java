@@ -22,7 +22,5 @@ public class SpyHandler extends ConsoleInputHandlerImpl{
         return wasCalled;
     }
 
-    public String getSpyHandlerResponse(){
-        return SPY_HANDLER;
-    }
+    public String getSpyHandlerResponse(){ return SPY_HANDLER; }
 }
