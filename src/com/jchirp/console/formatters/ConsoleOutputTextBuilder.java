@@ -28,26 +28,20 @@ public class ConsoleOutputTextBuilder {
         for(PostMsg postMsg: posts) {
             postsAsString += buildUserName(postMsg) +
                              buildContent(postMsg) +
-                             buildTimeSpanBetweenPostAndNow(postMsg) + "\n";
+                             buildTimeSpanBetweenPostCreationAndNow(postMsg) + "\n";
         }
         return postsAsString;
     }
 
     private String buildUserName(PostMsg postMsg){
-        if (isUserName) {
-            return postMsg.getUserName() + " - ";
-        }
-        return "";
+        return isUserName ? postMsg.getUserName() + " - " : "";
     }
 
     private String buildContent(PostMsg postMsg){
-        if(isContent) {
-            return postMsg.getContent() + " ";
-        }
-        return "";
+        return isContent ? postMsg.getContent() + " " : "";
     }
 
-    private String buildTimeSpanBetweenPostAndNow(PostMsg postMsg) {
+    private String buildTimeSpanBetweenPostCreationAndNow(PostMsg postMsg) {
         return new TimeSpan().timeSpanBetween(postMsg.getTimestamp(), Context.timestamp.now());
     }
 }
