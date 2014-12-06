@@ -43,6 +43,6 @@ public class ReadPostTest {
         ResponseMsg responseMsg = readPostUsecase.execute(new RequestMsg(USER_NAME, ""));
         assertEquals(USER_NAME, responseMsg.posts().get(0).getUserName());
         assertEquals(content, responseMsg.posts().get(0).getContent());
-        assertEquals(timestamp, responseMsg.posts().get(0).getTimestamp());
+        assertEquals(timestamp, responseMsg.posts().get(0).getPostTimestamp());
     }
 }

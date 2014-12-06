@@ -19,6 +19,16 @@ public class ReadHandlerTest {
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 
+    PostMsg buildPostMsg(String userName, String content, DateTime postTimestamp)
+    {
+        return new PostMsg.Builder()
+                        .withUserName(userName)
+                        .withContent(content)
+                        .withTimestamp(postTimestamp)
+                        .withCurrentTime(timestamp)
+                        .build();
+    }
+
     @Before
     public void setUp(){
         Context.timestamp = new StabTimestamp(timestamp);
@@ -39,8 +49,8 @@ public class ReadHandlerTest {
     @Test public void
     whenProvidedExistsReturnItsPosts(){
         ResponseMsg responseMsg = new ResponseMsg();
-        responseMsg.addPost(new PostMsg(USER, "Content", timestamp.minusHours(2)));
-        responseMsg.addPost(new PostMsg(USER, "Content two", timestamp.minusMinutes(1)));
+        responseMsg.addPost(buildPostMsg(USER, "Content", timestamp.minusHours(2)));
+        responseMsg.addPost(buildPostMsg(USER, "Content two", timestamp.minusMinutes(1)));
 
         spyPost.setResponseMsg(responseMsg);
         assertEquals("Content two (1 minute)\nContent (2 hours)\n", handler.handleRequest(USER));

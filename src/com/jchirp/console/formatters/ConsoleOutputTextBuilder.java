@@ -1,6 +1,5 @@
 package com.jchirp.console.formatters;
 
-import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 
 import java.util.Collections;
@@ -28,20 +27,25 @@ public class ConsoleOutputTextBuilder {
         for(PostMsg postMsg: posts) {
             postsAsString += buildUserName(postMsg) +
                              buildContent(postMsg) +
-                             buildTimeSpanBetweenPostCreationAndNow(postMsg) + "\n";
+                             buildTimeSpanBetweenPostCreationAndThisMoment(postMsg) +
+                             buildTextEnd();
         }
         return postsAsString;
     }
 
-    private String buildUserName(PostMsg postMsg){
+    private String buildUserName(PostMsg postMsg) {
         return isUserName ? postMsg.getUserName() + " - " : "";
     }
 
-    private String buildContent(PostMsg postMsg){
+    private String buildContent(PostMsg postMsg) {
         return isContent ? postMsg.getContent() + " " : "";
     }
 
-    private String buildTimeSpanBetweenPostCreationAndNow(PostMsg postMsg) {
-        return new TimeSpan().timeSpanBetween(postMsg.getTimestamp(), Context.timestamp.now());
+    private String buildTimeSpanBetweenPostCreationAndThisMoment(PostMsg postMsg) {
+        return new TimeSpan().timeSpanBetween(postMsg.getPostTimestamp(), postMsg.getCurrentTime());
+    }
+
+    private String buildTextEnd(){
+        return "\n";
     }
 }

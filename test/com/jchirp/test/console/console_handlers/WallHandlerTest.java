@@ -22,6 +22,16 @@ public class WallHandlerTest {
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 
+    PostMsg buildPostMsg(String userName, String content, DateTime postTimestamp)
+    {
+        return new PostMsg.Builder()
+                        .withUserName(userName)
+                        .withContent(content)
+                        .withTimestamp(postTimestamp)
+                        .withCurrentTime(timestamp)
+                        .build();
+    }
+
     @Before
     public void setUp(){
         Context.timestamp = new StabTimestamp(timestamp);
@@ -44,9 +54,9 @@ public class WallHandlerTest {
     whenCorrectHandlerShowUserWall(){
 
         ResponseMsg responseMsg = new ResponseMsg();
-        responseMsg.addPost(new PostMsg(USER_NAME, "Content one", timestamp.minusHours(2)));
-        responseMsg.addPost(new PostMsg("fallowed user", "Content of followed user", timestamp.minusMinutes(1)));
-        responseMsg.addPost(new PostMsg(USER_NAME, "Content two", timestamp.minusHours(1)));
+        responseMsg.addPost(buildPostMsg(USER_NAME, "Content one", timestamp.minusHours(2)));
+        responseMsg.addPost(buildPostMsg("fallowed user", "Content of followed user", timestamp.minusMinutes(1)));
+        responseMsg.addPost(buildPostMsg(USER_NAME, "Content two", timestamp.minusHours(1)));
 
         spyPost.setResponseMsg(responseMsg);
         String expectedResponse = "fallowed user" + " - Content of followed user (1 minute)\n";

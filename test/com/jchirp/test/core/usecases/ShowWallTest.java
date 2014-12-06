@@ -31,7 +31,7 @@ public class ShowWallTest {
         PostMsg postMsg = responseMsg.posts().get(postNumber);
         assertEquals(userName, postMsg.getUserName());
         assertEquals(content, postMsg.getContent());
-        assertEquals(timestamp, postMsg.getTimestamp());
+        assertEquals(timestamp, postMsg.getPostTimestamp());
     }
 
     @Before

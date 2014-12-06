@@ -38,12 +38,15 @@ public class ShowWall implements Command {
 
         if (user != null) {
             for (Post post : user.getPosts()) {
-                responseMsg.addPost(buildPostMsg(userName, post));
+                responseMsg.addPost(
+                        new PostMsg.Builder()
+                                .withUserName(userName)
+                                .withContent(post.getContent())
+                                .withTimestamp(post.getTimestamp())
+                                .withCurrentTime(Context.timestamp.now())
+                                .build());
             }
         }
     }
 
-    private PostMsg buildPostMsg(String userName, Post post) {
-        return new PostMsg(userName, post.getContent(), post.getTimestamp());
-    }
 }
