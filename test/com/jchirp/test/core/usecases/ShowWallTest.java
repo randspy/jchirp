@@ -9,6 +9,7 @@ import com.jchirp.core.messages.ResponseMsg;
 import com.jchirp.core.usecases.Command;
 import com.jchirp.core.usecases.ShowWall;
 import com.jchirp.externals.InMemoryGateway;
+import com.jchirp.test.external.StabTimestamp;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,7 @@ public class ShowWallTest {
         usecase = new ShowWall();
         timestamp = new DateTime();
         Context.gateway = new InMemoryGateway();
+        Context.timestamp = new StabTimestamp(timestamp);
     }
 
     @Test

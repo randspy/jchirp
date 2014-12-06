@@ -8,6 +8,7 @@ import com.jchirp.core.messages.ResponseMsg;
 import com.jchirp.core.usecases.Command;
 import com.jchirp.core.usecases.ReadPost;
 import com.jchirp.externals.InMemoryGateway;
+import com.jchirp.test.external.StabTimestamp;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +37,7 @@ public class ReadPostTest {
     readUsersPosts(){
         User user = new User(USER_NAME);
         DateTime timestamp = new DateTime();
+        Context.timestamp = new StabTimestamp(timestamp);
         String content = "content";
         user.addPost(new Post(content, timestamp));
         Context.gateway.setUser(user);
