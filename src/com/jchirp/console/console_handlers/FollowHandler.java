@@ -17,7 +17,7 @@ public class FollowHandler extends ConsoleInputHandlerImpl {
 
         if (consoleInput.contains(FOLLOWS))
         {
-            Splitter.Output output = new Splitter().splitUserNameFromContent(FOLLOWS, consoleInput);
+            Splitter.Output output = new Splitter().splitIntoTwoValues(FOLLOWS, consoleInput);
             usecase.execute(new RequestMsg(output.getBeforeSplitElement(), output.getAfterSplitElement()));
         }
         else

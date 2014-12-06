@@ -17,7 +17,7 @@ public class SplitterTest {
     public ExpectedException exception = ExpectedException.none();
 
     private void assertSplit(String input, String user, String content) {
-        Splitter.Output output = splitter.splitUserNameFromContent(SEPARATOR, input);
+        Splitter.Output output = splitter.splitIntoTwoValues(SEPARATOR, input);
         assertEquals(user, output.getBeforeSplitElement());
         assertEquals(content, output.getAfterSplitElement());
     }
@@ -35,7 +35,7 @@ public class SplitterTest {
     @Test public void
     whenSeparatorEmptyThrow(){
         exception.expect(IllegalArgumentException.class);
-        splitter.splitUserNameFromContent("", "");
+        splitter.splitIntoTwoValues("", "");
     }
 
     @Test public void

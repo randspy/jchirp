@@ -15,7 +15,7 @@ public class WriteHandler extends ConsoleInputHandlerImpl{
     @Override
     public String handleRequest(String consoleInput) {
         if (consoleInput.contains(ARROW)) {
-            Splitter.Output output = new Splitter().splitUserNameFromContent(ARROW, consoleInput);
+            Splitter.Output output = new Splitter().splitIntoTwoValues(ARROW, consoleInput);
             usecase.execute(new RequestMsg(output.getBeforeSplitElement(), output.getAfterSplitElement()));
         }
         else {

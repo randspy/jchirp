@@ -8,7 +8,7 @@ public class Splitter {
     /*
      * Throws IllegalArgumentException when separator is empty.
      */
-    public Output splitUserNameFromContent(String separator, String input) {
+    public Output splitIntoTwoValues(String separator, String input) {
 
         if(separator.isEmpty()) {
             throw new IllegalArgumentException("Separator is empty.");
