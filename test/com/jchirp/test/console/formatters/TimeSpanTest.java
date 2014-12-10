@@ -21,7 +21,7 @@ public class TimeSpanTest {
     }
 
     @Test public void
-    calculateTimeDifferenceInSeconds(){
+    calculateTimeDifferenceIn(){
         assertTimeSpan("2000-01-01T00:00:00.000-00:00", "2000-01-01T00:00:01.000-00:00", "(1 second)");
         assertTimeSpan("2000-01-01T00:00:00.000-00:00", "2000-01-01T00:00:02.000-00:00", "(2 seconds)");
         assertTimeSpan("2000-01-01T00:00:00.000-00:00", "2000-01-01T00:01:01.000-00:00", "(1 minute)");

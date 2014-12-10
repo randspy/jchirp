@@ -25,12 +25,12 @@ public class WritePostTest {
         writePostUsecase.execute(new RequestMsg(user, content));
     }
 
-    private void assertUser(String userName, String content, int postIndex) {
+    private void assertUser(String userName, String content, int postNumberInCollection) {
         User user = Context.gateway.getUser(userName);
 
         assertEquals(userName, user.getUserName());
-        assertEquals(content, user.getPosts().get(postIndex).getContent());
-        assertEquals(now, user.getPosts().get(postIndex).getTimestamp());
+        assertEquals(content, user.getPosts().get(postNumberInCollection).getContent());
+        assertEquals(now, user.getPosts().get(postNumberInCollection).getTimestamp());
     }
 
     @Before
@@ -43,9 +43,7 @@ public class WritePostTest {
 
     @Test public void
     userIsAddedIfDoesNotExistAlready(){
-
         executeRequest(USER_NAME, POST);
-
         assertUser(USER_NAME, POST, 0);
     }
 

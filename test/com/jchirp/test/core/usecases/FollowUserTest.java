@@ -14,16 +14,16 @@ import static org.junit.Assert.assertNull;
 
 public class FollowUserTest {
 
-    public static final String USER_NAME = "user";
-    public static final String FOLLOWED_USER_NAME = "followed user";
+    private static final String USER_NAME = "user";
+    private static final String FOLLOWED_USER_NAME = "followed user";
     private Command followUserUsecase;
     private RequestMsg requestMsg;
 
-    private User getUser() {
+    private User getUserFromGateway() {
         return Context.gateway.getUser(USER_NAME);
     }
 
-    private void setUser(String userName) {
+    private void setUserInGateway(String userName) {
         Context.gateway.setUser(new User(userName));
     }
 
@@ -37,55 +37,58 @@ public class FollowUserTest {
     @Test public void
     whenUserDoesNotExistDoNothing(){
         followUserUsecase.execute(requestMsg);
-        assertNull(getUser());
+        assertNull(getUserFromGateway());
     }
 
     @Test public void
     whenFollowedUserDoesNotExistDoNothing(){
-        String userName = USER_NAME;
-        setUser(userName);
+        setUserInGateway(USER_NAME);
+
         followUserUsecase.execute(requestMsg);
-        assertEquals(0, getUser().getFollowedUsers().size());
+
+        assertEquals(0, getUserFromGateway().getFollowedUsers().size());
     }
 
     @Test public void
     followUser(){
-        setUser(USER_NAME);
-        setUser(FOLLOWED_USER_NAME);
+        setUserInGateway(USER_NAME);
+        setUserInGateway(FOLLOWED_USER_NAME);
+
         followUserUsecase.execute(requestMsg);
 
-        assertEquals(FOLLOWED_USER_NAME, getUser().getFollowedUsers().iterator().next());
+        assertEquals(FOLLOWED_USER_NAME, getUserFromGateway().getFollowedUsers().iterator().next());
+    }
+
+    @Test public void
+    followMoreThanOneUserUser(){
+        String secondFollowedUser = "second followed user";
+        setUserInGateway(USER_NAME);
+        setUserInGateway(FOLLOWED_USER_NAME);
+        setUserInGateway(secondFollowedUser);
+
+        followUserUsecase.execute(requestMsg);
+        followUserUsecase.execute(new RequestMsg(USER_NAME, secondFollowedUser));
+
+        assertEquals(2, getUserFromGateway().getFollowedUsers().size());
     }
 
     @Test public void
     userCantFollowOtherUserMoreThanOneTime(){
-        setUser(USER_NAME);
-        setUser(FOLLOWED_USER_NAME);
+        setUserInGateway(USER_NAME);
+        setUserInGateway(FOLLOWED_USER_NAME);
+        
         followUserUsecase.execute(requestMsg);
         followUserUsecase.execute(requestMsg);
 
-        assertEquals(1, getUser().getFollowedUsers().size());
+        assertEquals(1, getUserFromGateway().getFollowedUsers().size());
     }
-
 
     @Test public void
     userCantFollowHimself(){
-        setUser(USER_NAME);
+        setUserInGateway(USER_NAME);
+        
         followUserUsecase.execute(new RequestMsg(USER_NAME, USER_NAME));
 
-        assertEquals(0, getUser().getFollowedUsers().size());
+        assertEquals(0, getUserFromGateway().getFollowedUsers().size());
     }
-
-    @Test public void
-    whenUserNotPresentInInputDoNothing(){
-        followUserUsecase.execute(new RequestMsg("", FOLLOWED_USER_NAME));
-        assertNull(getUser());
-    }
-
-    @Test public void
-    whenFollowedUserNotPresentInInputDoNothing(){
-        followUserUsecase.execute(new RequestMsg(USER_NAME, ""));
-        assertNull(Context.gateway.getUser(""));
-    }
-
 }

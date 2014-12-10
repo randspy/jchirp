@@ -35,14 +35,17 @@ public class ReadPostTest {
 
     @Test public void
     readUsersPosts(){
-        User user = new User(USER_NAME);
+        String content = "content";
+
         DateTime timestamp = new DateTime();
         Context.timestamp = new StabTimestamp(timestamp);
-        String content = "content";
+
+        User user = new User(USER_NAME);
         user.addPost(new Post(content, timestamp));
         Context.gateway.setUser(user);
 
         ResponseMsg responseMsg = readPostUsecase.execute(new RequestMsg(USER_NAME, ""));
+
         assertEquals(USER_NAME, responseMsg.posts().get(0).getUserName());
         assertEquals(content, responseMsg.posts().get(0).getContent());
         assertEquals(timestamp, responseMsg.posts().get(0).getPostTimestamp());

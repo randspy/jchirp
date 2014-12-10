@@ -19,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 public class ShowWallTest {
 
     private static final String USER_NAME = "user name";
+    private static final String TEXT_ONE = "text one";
+    private static final String TEXT_TWO = "text two";
     private Command usecase;
     private DateTime timestamp;
 
@@ -27,9 +29,10 @@ public class ShowWallTest {
         Context.gateway.setUser(user);
     }
 
-    private void assertUsacaseResponse(String userName, String content, int postNumber) {
+    private void assertUsacaseResponse(String userName, String content, int postNumberInCollection) {
         ResponseMsg responseMsg = usecase.execute(new RequestMsg(USER_NAME, ""));
-        PostMsg postMsg = responseMsg.posts().get(postNumber);
+        PostMsg postMsg = responseMsg.posts().get(postNumberInCollection);
+
         assertEquals(userName, postMsg.getUserName());
         assertEquals(content, postMsg.getContent());
         assertEquals(timestamp, postMsg.getPostTimestamp());
@@ -46,29 +49,32 @@ public class ShowWallTest {
     @Test
     public void
     whenUserDoesNotExistNoPostsReturned(){
-        ResponseMsg responseMsg = usecase.execute(new RequestMsg("user name", ""));
+        ResponseMsg responseMsg = usecase.execute(new RequestMsg(USER_NAME, ""));
         assertEquals(0, responseMsg.posts().size());
     }
 
     @Test public void
     whenUserIsNotFollowingAnyoneReturnOnlyUserPosts(){
         User user = new User(USER_NAME);
-        addUserToGateway(user, "text one");
-        addUserToGateway(user, "text two");
-        assertUsacaseResponse(USER_NAME, "text one", 0);
-        assertUsacaseResponse(USER_NAME, "text two", 1);
+        addUserToGateway(user, TEXT_ONE);
+        addUserToGateway(user, TEXT_TWO);
+        assertUsacaseResponse(USER_NAME, TEXT_ONE, 0);
+        assertUsacaseResponse(USER_NAME, TEXT_TWO, 1);
     }
 
     @Test public void
     whenUserContainsFollowingUsersReturnAlsoTheirPosts(){
         String followedUserName = "followed user";
+        String followedUserContent = "followed user text";
+
         User followedUser = new User(followedUserName);
-        addUserToGateway(followedUser, "followed user text");
+        addUserToGateway(followedUser, followedUserContent);
+
         User user = new User(USER_NAME);
         user.addFollowedUsers(followedUserName);
-        addUserToGateway(user, "text one");
+        addUserToGateway(user,TEXT_ONE);
 
-        assertUsacaseResponse(USER_NAME, "text one", 0);
-        assertUsacaseResponse(followedUserName, "followed user text", 1);
+        assertUsacaseResponse(USER_NAME, TEXT_ONE, 0);
+        assertUsacaseResponse(followedUserName, followedUserContent, 1);
     }
 }
