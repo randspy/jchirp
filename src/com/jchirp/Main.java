@@ -1,6 +1,6 @@
 package com.jchirp;
 
-import com.jchirp.console.console_handlers.*;
+import com.jchirp.console.user_actions.*;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.usecases.FollowUser;
 import com.jchirp.core.usecases.ReadPost;
@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ConsoleInputHandler handler = buildIInfrastructure();
+        UserAction handler = buildIInfrastructure();
 
         while (true) {
             printPrompt();
@@ -27,20 +27,20 @@ public class Main {
         }
     }
 
-    private static ConsoleInputHandler buildIInfrastructure() {
+    private static UserAction buildIInfrastructure() {
         Context.gateway = new InMemoryGateway();
         Context.timestamp = new CurrentTime();
 
-        ConsoleInputHandler readHandler = new ReadHandler(new ReadPost());
-        ConsoleInputHandler writeHandler = new WriteHandler(new WritePost());
-        ConsoleInputHandler followHandler = new FollowHandler(new FollowUser());
-        ConsoleInputHandler wallHandler = new WallHandler(new ShowWall());
+        UserAction readAction = new ReadAction(new ReadPost());
+        UserAction writeAction = new WriteAction(new WritePost());
+        UserAction followAction = new FollowAction(new FollowUser());
+        UserAction wallAction = new WallAction(new ShowWall());
 
-        writeHandler.setNext(followHandler);
-        followHandler.setNext(wallHandler);
-        wallHandler.setNext(readHandler);
+        writeAction.setNext(followAction);
+        followAction.setNext(wallAction);
+        wallAction.setNext(readAction);
 
-        return  writeHandler;
+        return  writeAction;
     }
 
     private static void printPrompt() {

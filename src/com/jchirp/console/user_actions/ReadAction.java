@@ -1,4 +1,4 @@
-package com.jchirp.console.console_handlers;
+package com.jchirp.console.user_actions;
 
 import com.jchirp.console.formatters.ConsoleOutputTextBuilder;
 import com.jchirp.core.messages.PostMsg;
@@ -8,9 +8,9 @@ import com.jchirp.core.usecases.Command;
 
 import java.util.List;
 
-public class ReadHandler extends ConsoleInputHandlerImpl {
+public class ReadAction extends UserActionImpl {
 
-    public ReadHandler(Command usecase) {
+    public ReadAction(Command usecase) {
         super(usecase);
     }
 

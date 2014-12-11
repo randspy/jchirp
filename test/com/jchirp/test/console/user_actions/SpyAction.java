@@ -1,13 +1,13 @@
-package com.jchirp.test.console.console_handlers;
+package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.console_handlers.ConsoleInputHandlerImpl;
+import com.jchirp.console.user_actions.UserActionImpl;
 
-public class SpyHandler extends ConsoleInputHandlerImpl{
+public class SpyAction extends UserActionImpl {
 
     private static final String SPY_HANDLER = "SpyHandler";
     private boolean wasCalled;
 
-    public SpyHandler() {
+    public SpyAction() {
         super(null);
         wasCalled = false;
     }

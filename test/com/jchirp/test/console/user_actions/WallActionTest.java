@@ -1,7 +1,7 @@
-package com.jchirp.test.console.console_handlers;
+package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.console_handlers.ConsoleInputHandler;
-import com.jchirp.console.console_handlers.WallHandler;
+import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.WallAction;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.ResponseMsg;
@@ -13,12 +13,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class WallHandlerTest {
+public class WallActionTest {
 
     private static final String USER_NAME = "user";
     private static final String WALL = "wall";
 
-    private ConsoleInputHandler handler;
+    private UserAction action;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 
@@ -36,18 +36,18 @@ public class WallHandlerTest {
     public void setUp(){
         Context.timestamp = new StabTimestamp(timestamp);
         spyPost = new SpyPost();
-        handler = new WallHandler(spyPost);
+        action = new WallAction(spyPost);
     }
 
     @Test public void
     whenNotCorrectHandlerGoToNextHandler(){
-        SpyHandler nextHandler = new SpyHandler();
+        SpyAction nextAction = new SpyAction();
 
-        handler.setNext(nextHandler);
-        String response = handler.handleRequest("");
+        action.setNext(nextAction);
+        String response = action.handleRequest("");
 
-        assertTrue(nextHandler.wasCalled());
-        assertEquals(nextHandler.getSpyHandlerResponse(), response);
+        assertTrue(nextAction.wasCalled());
+        assertEquals(nextAction.getSpyHandlerResponse(), response);
     }
 
     @Test public void
@@ -63,7 +63,7 @@ public class WallHandlerTest {
         expectedResponse += USER_NAME + " - Content two (1 hour)\n";
         expectedResponse += USER_NAME + " - Content one (2 hours)\n";
 
-        assertEquals(expectedResponse, handler.handleRequest(USER_NAME + WALL));
+        assertEquals(expectedResponse, action.handleRequest(USER_NAME + WALL));
         assertEquals(USER_NAME, spyPost.getRequestMsg().getUserName());
     }
 }

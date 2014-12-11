@@ -1,4 +1,4 @@
-package com.jchirp.console.console_handlers;
+package com.jchirp.console.user_actions;
 
 import com.jchirp.console.formatters.ConsoleOutputTextBuilder;
 import com.jchirp.console.formatters.Splitter;
@@ -9,11 +9,11 @@ import com.jchirp.core.usecases.Command;
 
 import java.util.List;
 
-public class WallHandler extends ConsoleInputHandlerImpl {
+public class WallAction extends UserActionImpl {
 
     private static final String WALL = "wall";
 
-    public WallHandler(Command usecase) {
+    public WallAction(Command usecase) {
         super(usecase);
     }
 

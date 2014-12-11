@@ -1,7 +1,7 @@
-package com.jchirp.test.console.console_handlers;
+package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.console_handlers.ConsoleInputHandler;
-import com.jchirp.console.console_handlers.ReadHandler;
+import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.ReadAction;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
 import com.jchirp.core.messages.ResponseMsg;
@@ -12,10 +12,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ReadHandlerTest {
+public class ReadActionTest {
 
     private static final String USER = "USER";
-    private ConsoleInputHandler handler;
+    private UserAction action;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 
@@ -33,17 +33,17 @@ public class ReadHandlerTest {
     public void setUp(){
         Context.timestamp = new StabTimestamp(timestamp);
         spyPost = new SpyPost();
-        handler = new ReadHandler(spyPost);
+        action = new ReadAction(spyPost);
     }
 
     @Test public void
     whenEmptyInputReturnEmptyString(){
-        assertEquals("", handler.handleRequest(""));
+        assertEquals("", action.handleRequest(""));
     }
 
     @Test public void
     whenProvidedUserDoesNotExistReturnEmptyString(){
-        assertEquals("", handler.handleRequest(USER));
+        assertEquals("", action.handleRequest(USER));
     }
 
     @Test public void
@@ -53,7 +53,7 @@ public class ReadHandlerTest {
         responseMsg.addPost(buildPostMsg(USER, "Content two", timestamp.minusMinutes(1)));
 
         spyPost.setResponseMsg(responseMsg);
-        assertEquals("Content two (1 minute)\nContent (2 hours)\n", handler.handleRequest(USER));
+        assertEquals("Content two (1 minute)\nContent (2 hours)\n", action.handleRequest(USER));
         assertEquals(USER, spyPost.getRequestMsg().getUserName());
     }
 

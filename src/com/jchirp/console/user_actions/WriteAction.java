@@ -1,14 +1,14 @@
-package com.jchirp.console.console_handlers;
+package com.jchirp.console.user_actions;
 
 import com.jchirp.console.formatters.Splitter;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 
-public class WriteHandler extends ConsoleInputHandlerImpl{
+public class WriteAction extends UserActionImpl {
 
     public static final String ARROW = "->";
 
-    public WriteHandler(Command usecase) {
+    public WriteAction(Command usecase) {
         super(usecase);
     }
 
