@@ -1,8 +1,8 @@
 package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.user_actions.UserActionImpl;
+import com.jchirp.console.user_actions.ActionImpl;
 
-public class SpyAction extends UserActionImpl {
+public class SpyAction extends ActionImpl {
 
     private static final String SPY_HANDLER = "SpyHandler";
     private boolean wasCalled;

@@ -9,7 +9,7 @@ import com.jchirp.core.usecases.Command;
 
 import java.util.List;
 
-public class WallAction extends UserActionImpl {
+public class WallAction extends ActionImpl {
 
     private static final String WALL = "wall";
 

@@ -1,6 +1,6 @@
 package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.Action;
 import com.jchirp.console.user_actions.WallAction;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
@@ -18,7 +18,7 @@ public class WallActionTest {
     private static final String USER_NAME = "user";
     private static final String WALL = "wall";
 
-    private UserAction action;
+    private Action action;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 

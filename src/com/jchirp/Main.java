@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        UserAction handler = buildIInfrastructure();
+        Action handler = buildIInfrastructure();
 
         while (true) {
             printPrompt();
@@ -27,14 +27,14 @@ public class Main {
         }
     }
 
-    private static UserAction buildIInfrastructure() {
+    private static Action buildIInfrastructure() {
         Context.gateway = new InMemoryGateway();
         Context.timestamp = new CurrentTime();
 
-        UserAction readAction = new ReadAction(new ReadPost());
-        UserAction writeAction = new WriteAction(new WritePost());
-        UserAction followAction = new FollowAction(new FollowUser());
-        UserAction wallAction = new WallAction(new ShowWall());
+        Action readAction = new ReadAction(new ReadPost());
+        Action writeAction = new WriteAction(new WritePost());
+        Action followAction = new FollowAction(new FollowUser());
+        Action wallAction = new WallAction(new ShowWall());
 
         writeAction.setNext(followAction);
         followAction.setNext(wallAction);

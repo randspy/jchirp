@@ -4,7 +4,7 @@ import com.jchirp.console.formatters.Splitter;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 
-public class WriteAction extends UserActionImpl {
+public class WriteAction extends ActionImpl {
 
     public static final String ARROW = "->";
 

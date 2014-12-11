@@ -1,6 +1,6 @@
 package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.Action;
 import com.jchirp.console.user_actions.FollowAction;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class FollowActionTest {
     private static final String USER = "user";
     private static final String FOLLOWS = "follows";
     private static final String FOLLOWED_USER = "followed user";
-    private UserAction action;
+    private Action action;
     private SpyPost spyFollowPost;
 
     @Before

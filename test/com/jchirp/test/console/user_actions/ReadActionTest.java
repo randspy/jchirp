@@ -1,6 +1,6 @@
 package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.Action;
 import com.jchirp.console.user_actions.ReadAction;
 import com.jchirp.core.external.Context;
 import com.jchirp.core.messages.PostMsg;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ReadActionTest {
 
     private static final String USER = "USER";
-    private UserAction action;
+    private Action action;
     private SpyPost spyPost;
     private DateTime timestamp = new DateTime();
 

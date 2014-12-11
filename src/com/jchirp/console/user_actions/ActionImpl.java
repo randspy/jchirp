@@ -2,16 +2,16 @@ package com.jchirp.console.user_actions;
 
 import com.jchirp.core.usecases.Command;
 
-public abstract class UserActionImpl implements UserAction {
-    protected UserAction next_handler;
+public abstract class ActionImpl implements Action {
+    protected Action next_handler;
     protected Command usecase;
 
-    public UserActionImpl(Command usecase) {
+    public ActionImpl(Command usecase) {
         this.usecase = usecase;
     }
 
     @Override
-    public void setNext(UserAction handler) {
+    public void setNext(Action handler) {
         this.next_handler = handler;
     }
 

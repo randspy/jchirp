@@ -8,7 +8,7 @@ import com.jchirp.core.usecases.Command;
 
 import java.util.List;
 
-public class ReadAction extends UserActionImpl {
+public class ReadAction extends ActionImpl {
 
     public ReadAction(Command usecase) {
         super(usecase);

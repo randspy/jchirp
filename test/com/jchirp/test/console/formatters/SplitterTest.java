@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class SplitterTest {
 
-    public static final String SEPARATOR = "->";
+    private static final String SEPARATOR = "->";
     private Splitter splitter;
 
     @Rule

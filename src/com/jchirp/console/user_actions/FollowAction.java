@@ -4,7 +4,7 @@ import com.jchirp.console.formatters.Splitter;
 import com.jchirp.core.messages.RequestMsg;
 import com.jchirp.core.usecases.Command;
 
-public class FollowAction extends UserActionImpl {
+public class FollowAction extends ActionImpl {
 
     public static final String FOLLOWS = "follows";
 

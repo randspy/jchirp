@@ -1,6 +1,6 @@
 package com.jchirp.test.console.user_actions;
 
-import com.jchirp.console.user_actions.UserAction;
+import com.jchirp.console.user_actions.Action;
 import com.jchirp.console.user_actions.WriteAction;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class WriteActionTest {
     private static final String ARROW = "->";
     private static final String USER = "USER";
     private static final String CONTENT = "CONTENT";
-    private UserAction action;
+    private Action action;
     private SpyPost spyWritePost;
 
     @Before
