@@ -13,15 +13,14 @@ public class WriteAction extends ActionImpl {
     }
 
     @Override
-    public String handleRequest(String consoleInput) {
-        if (consoleInput.contains(ARROW)) {
-            Splitter.Output output = new Splitter().splitIntoTwoValues(ARROW, consoleInput);
-            usecase.execute(new RequestMsg(output.getBeforeSplitElement(), output.getAfterSplitElement()));
-        }
-        else {
-            return next_handler.handleRequest(consoleInput);
-        }
-
+    protected String handleAction(String consoleInput) {
+        Splitter.Output output = new Splitter().splitIntoTwoValues(ARROW, consoleInput);
+        usecase.execute(new RequestMsg(output.getElementBeforeSplitToken(), output.getElementsAfterSplitToken()));
         return "";
+    }
+
+    @Override
+    protected String getActionToken() {
+        return ARROW;
     }
 }

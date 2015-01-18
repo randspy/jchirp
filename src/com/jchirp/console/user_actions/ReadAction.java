@@ -15,9 +15,14 @@ public class ReadAction extends ActionImpl {
     }
 
     @Override
-    public String handleRequest(String consoleInput) {
+    protected String handleAction(String consoleInput) {
         ResponseMsg responseMsg = usecase.execute(new RequestMsg(consoleInput, ""));
         return responseMsg != null ? formatPostsDisplayedToUser(responseMsg.posts()) : "";
+    }
+
+    @Override
+    protected String getActionToken() {
+        return "";
     }
 
     private String formatPostsDisplayedToUser(List<PostMsg> posts) {

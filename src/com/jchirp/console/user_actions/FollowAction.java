@@ -13,18 +13,14 @@ public class FollowAction extends ActionImpl {
     }
 
     @Override
-    public String handleRequest(String consoleInput) {
-
-        if (consoleInput.contains(FOLLOWS))
-        {
-            Splitter.Output output = new Splitter().splitIntoTwoValues(FOLLOWS, consoleInput);
-            usecase.execute(new RequestMsg(output.getBeforeSplitElement(), output.getAfterSplitElement()));
-        }
-        else
-        {
-            return next_handler.handleRequest(consoleInput);
-        }
-
+    protected String handleAction(String consoleInput) {
+        Splitter.Output output = new Splitter().splitIntoTwoValues(FOLLOWS, consoleInput);
+        usecase.execute(new RequestMsg(output.getElementBeforeSplitToken(), output.getElementsAfterSplitToken()));
         return "";
+    }
+
+    @Override
+    protected String getActionToken() {
+        return FOLLOWS;
     }
 }

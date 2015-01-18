@@ -18,6 +18,16 @@ public class SpyAction extends ActionImpl {
         return SPY_HANDLER;
     }
 
+    @Override
+    protected String handleAction(String consoleInput) {
+        return null;
+    }
+
+    @Override
+    protected String getActionToken() {
+        return SPY_HANDLER;
+    }
+
     public boolean wasCalled() {
         return wasCalled;
     }

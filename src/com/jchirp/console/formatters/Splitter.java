@@ -34,20 +34,20 @@ public class Splitter {
     }
 
     public class Output{
-        private String beforeSplitElement = "";
-        private String afterSplitElement = "";
+        private String elementBeforeSplitToken = "";
+        private String elementAfterSplitToken = "";
 
-        public Output(String beforeSplitElement, String afterSplitElement) {
-            this.beforeSplitElement = beforeSplitElement;
-            this.afterSplitElement = afterSplitElement;
+        public Output(String elementBeforeSplitToken, String elementAfterSplitToken) {
+            this.elementBeforeSplitToken = elementBeforeSplitToken;
+            this.elementAfterSplitToken = elementAfterSplitToken;
         }
 
-        public String getBeforeSplitElement() {
-            return beforeSplitElement;
+        public String getElementBeforeSplitToken() {
+            return elementBeforeSplitToken;
         }
 
-        public String getAfterSplitElement() {
-            return afterSplitElement;
+        public String getElementsAfterSplitToken() {
+            return elementAfterSplitToken;
         }
     }
 

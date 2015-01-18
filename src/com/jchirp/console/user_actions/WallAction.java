@@ -18,18 +18,15 @@ public class WallAction extends ActionImpl {
     }
 
     @Override
-    public String handleRequest(String consoleInput) {
+    protected String handleAction(String consoleInput) {
+        Splitter.Output output = new Splitter().splitIntoTwoValues(WALL, consoleInput);
+        ResponseMsg responseMsg = usecase.execute(new RequestMsg(output.getElementBeforeSplitToken(),""));
+        return responseMsg != null ? formatPostsDisplayedToUser(responseMsg.posts()) : "";
+    }
 
-        if(consoleInput.contains(WALL))
-        {
-            Splitter.Output output = new Splitter().splitIntoTwoValues(WALL, consoleInput);
-            ResponseMsg responseMsg = usecase.execute(new RequestMsg(output.getBeforeSplitElement(),""));
-            return responseMsg != null ? formatPostsDisplayedToUser(responseMsg.posts()) : "";
-        }
-        else
-        {
-            return next_handler.handleRequest(consoleInput);
-        }
+    @Override
+    protected String getActionToken() {
+        return WALL;
     }
 
     private String formatPostsDisplayedToUser(List<PostMsg> posts) {

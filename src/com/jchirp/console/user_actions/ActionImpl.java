@@ -15,5 +15,21 @@ public abstract class ActionImpl implements Action {
         this.next_handler = handler;
     }
 
-    public abstract String handleRequest(String consoleInput);
+    @Override
+    public String handleRequest(String consoleInput) {
+
+        if(consoleInput.contains(getActionToken()))
+        {
+            return  handleAction(consoleInput);
+        }
+        else
+        {
+            return next_handler.handleRequest(consoleInput);
+        }
+    }
+
+    protected abstract String handleAction(String consoleInput);
+
+    protected abstract String getActionToken();
+
 }

@@ -18,8 +18,8 @@ public class SplitterTest {
 
     private void assertSplit(String input, String user, String content) {
         Splitter.Output output = splitter.splitIntoTwoValues(SEPARATOR, input);
-        assertEquals(user, output.getBeforeSplitElement());
-        assertEquals(content, output.getAfterSplitElement());
+        assertEquals(user, output.getElementBeforeSplitToken());
+        assertEquals(content, output.getElementsAfterSplitToken());
     }
 
     @Before
