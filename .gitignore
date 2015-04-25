@@ -16,3 +16,9 @@ hs_err_pid*
 
 #maven delivery folder
 target/*
+
+#gradle delivery folder
+build/*
+
+#grale options
+.gradle/*
