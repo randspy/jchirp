@@ -42,7 +42,7 @@ public class ConsoleOutputTextBuilder {
     }
 
     private String buildTimeSpanBetweenPostCreationAndThisMoment(PostMsg postMsg) {
-        return new TimeSpan().timeSpanBetween(postMsg.getPostTimestamp(), postMsg.getCurrentTime());
+        return new TimeForDisplay().timeSpanBetween(postMsg.getPostTimestamp(), postMsg.getCurrentTime());
     }
 
     private String buildTextEnd(){

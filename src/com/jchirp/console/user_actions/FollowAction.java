@@ -15,7 +15,8 @@ public class FollowAction extends ActionImpl {
     @Override
     protected String handleAction(String consoleInput) {
         Splitter.Output output = new Splitter().splitIntoTwoValues(FOLLOWS, consoleInput);
-        usecase.execute(new RequestMsg(output.getElementBeforeSplitToken(), output.getElementsAfterSplitToken()));
+        usecase.execute(new RequestMsg(output.getElementBeforeSplitToken(),
+                                       output.getElementsAfterSplitToken()));
         return "";
     }
 

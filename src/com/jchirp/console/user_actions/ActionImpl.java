@@ -3,7 +3,7 @@ package com.jchirp.console.user_actions;
 import com.jchirp.core.usecases.Command;
 
 public abstract class ActionImpl implements Action {
-    protected Action next_handler;
+    protected Action nextAction;
     protected Command usecase;
 
     public ActionImpl(Command usecase) {
@@ -12,7 +12,7 @@ public abstract class ActionImpl implements Action {
 
     @Override
     public void setNext(Action handler) {
-        this.next_handler = handler;
+        this.nextAction = handler;
     }
 
     @Override
@@ -24,7 +24,7 @@ public abstract class ActionImpl implements Action {
         }
         else
         {
-            return next_handler.handleRequest(consoleInput);
+            return nextAction.handleRequest(consoleInput);
         }
     }
 

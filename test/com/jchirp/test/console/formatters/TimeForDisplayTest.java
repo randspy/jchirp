@@ -1,23 +1,23 @@
 package com.jchirp.test.console.formatters;
 
-import com.jchirp.console.formatters.TimeSpan;
+import com.jchirp.console.formatters.TimeForDisplay;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TimeSpanTest {
+public class TimeForDisplayTest {
 
-    private TimeSpan timeSpan;
+    private TimeForDisplay timeForDisplay;
 
     private void assertTimeSpan(String first, String second, String expected) {
-        assertEquals(expected, timeSpan.timeSpanBetween(new DateTime(first),new DateTime(second)));
+        assertEquals(expected, timeForDisplay.timeSpanBetween(new DateTime(first),new DateTime(second)));
     }
 
     @Before
     public void setUp(){
-        timeSpan = new TimeSpan();
+        timeForDisplay = new TimeForDisplay();
     }
 
     @Test public void
